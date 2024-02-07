@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:05 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/04 17:09:51 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:45:21 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,53 @@ class Fixed
 		int					fixed_point;
 		static const int	fract_bits;
 	public:
+	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 		Fixed(void);
 		~Fixed();
 
+	/*---COPY CONSTRUCTOR/ASSIGNMENT OPERATOR---*/
 		Fixed(const Fixed &other);
-		Fixed &operator= (const Fixed &other);
+		Fixed	&operator=(const Fixed &other);
 
+	/*---CONSTRUCTORS---*/
 		Fixed(const int parameter);
 		Fixed(const float number);
 
+	/*---GETER/SETER---*/
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 
-		float toFloat(void) const;
-		int toInt(void) const;
+	/*---FLOAT/INT---*/
+		float	toFloat(void) const;
+		int		toInt(void) const;
+
+	/*---COMPARISON OPERATORS---*/
+		bool	operator<(const Fixed &other) const;
+		bool	operator>(const Fixed &other) const;
+		bool	operator<=(const Fixed &other)const;
+		bool	operator>=(const Fixed &other)const;
+		bool	operator!=(const Fixed &other)const;
+
+	/*---ARITHMETIC OPERATORS---*/
+		Fixed	operator+(const Fixed &other);
+		Fixed	operator-(const Fixed &other);
+		Fixed	operator*(const Fixed &other);
+		Fixed	operator/(const Fixed &other);
+
+	/*--INCREMENT/DECREMENT---*/
+		Fixed	operator++();
+		Fixed	operator++(int number);
+		Fixed	operator--();
+		Fixed	operator--(int number);
+
+	/*---MIN/MAX---*/
+		static Fixed		&min(Fixed &ref_1, Fixed &ref_2);
+		static Fixed		&max(Fixed &ref_1, Fixed &ref_2);
+		static const Fixed	&min(const Fixed &ref_1, const Fixed &ref_2);
+		static const Fixed	&max(const Fixed &ref_1, const Fixed &ref_2);
 };
+
+/*---COPY ASSIGNMENT---*/
 
 std::ostream& operator<<(std::ostream& oso, const Fixed& fixed);
 
