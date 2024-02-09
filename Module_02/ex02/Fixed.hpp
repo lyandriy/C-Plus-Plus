@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:05 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/07 19:45:21 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:37:14 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ class Fixed
 
 	/*--INCREMENT/DECREMENT---*/
 		Fixed	operator++();
-		Fixed	operator++(int number);
+		Fixed	operator++(int);
 		Fixed	operator--();
-		Fixed	operator--(int number);
+		Fixed	operator--(int);
 
 	/*---MIN/MAX---*/
 		static Fixed		&min(Fixed &ref_1, Fixed &ref_2);

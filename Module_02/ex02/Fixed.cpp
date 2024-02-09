@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:02 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/07 19:46:37 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:40:50 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,19 @@ const int	Fixed::fract_bits = 8;
 
 /*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 
-Fixed::Fixed(void) : fixed_point(0){
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed(void) : fixed_point(0){}
 
-Fixed::~Fixed(){
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed(){}
 
 /*---COPY CONSTRUCTOR/ASSIGNMENT OPERATOR---*/
 
 Fixed::Fixed(const Fixed &other)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	this->setRawBits(other.getRawBits());
 	return (*this);
 }
@@ -42,13 +36,11 @@ Fixed &Fixed::operator=(const Fixed &other)
 /*---CONSTRUCTORS---*/
 
 Fixed::Fixed(const int parameter){
-	std::cout << "Int constructor called" << std::endl;
 	this->fixed_point = parameter << this->fract_bits;
 }
 
 Fixed::Fixed(const float number){
-	std::cout << "Float constructor called" << std::endl;
-	this->fixed_point = std::roundf(number * (1 << this->fract_bits));
+	this->fixed_point = number * (1 << this->fract_bits);
 }
 
 /*---GETER/SETER---*/
@@ -66,13 +58,11 @@ void	Fixed::setRawBits(int const raw)
 /*---FLOAT/INT---*/
 
 float	Fixed::toFloat(void) const {
-	std::cout << "float	Fixed::toFloat" << std::endl;
 	float i = static_cast<float>(this->fixed_point) / static_cast<float>(1 << this->fract_bits);
 	return i;
 }
 
 int	Fixed::toInt(void) const {
-	std::cout << "int	Fixed::toInt" << std::endl;
 	return (this->fixed_point >> this->fract_bits);
 }
 
@@ -130,30 +120,28 @@ Fixed	Fixed::operator-(const Fixed &other)
 
 Fixed	Fixed::operator*(const Fixed &other)
 {
-	this->fixed_point *= other.fixed_point;
+	this->fixed_point = (this->fixed_point * other.fixed_point) >> this->fract_bits;
 	return (*this);
 }
 
 Fixed	Fixed::operator/(const Fixed &other)
 {
-	this->fixed_point /= other.fixed_point;
+	this->fixed_point = (this->fixed_point / other.fixed_point) >> this->fixed_point;
 	return (*this);
 }
 
 /*--INCREMENT/DECREMENT---*/
 Fixed	Fixed::operator++()
 {
-	std::cout << "const Fixed	&Fixed::operator++" << std::endl;
 	this->fixed_point++;
 	return (*this);
 }
 
-Fixed	Fixed::operator++(int number)
+Fixed	Fixed::operator++(int)
 {
-	//Fixed	copy(*this);
-	std::cout << "const Fixed	&Fixed::operator++(int)" << number << std::endl;
+	Fixed	copy(*this);
 	this->fixed_point++;
-	return (*this);
+	return (copy);
 }
 
 Fixed	Fixed::operator--()
@@ -162,17 +150,17 @@ Fixed	Fixed::operator--()
 	return (*this);
 }
 
-Fixed	Fixed::operator--(int number)
+Fixed	Fixed::operator--(int)
 {
-	this->fixed_point -= number;
-	return (*this);
+	Fixed	copy(*this);
+	this->fixed_point--;
+	return (copy);
 }
 
 /*---MIN/MAX---*/
 
 Fixed	&Fixed::min(Fixed &ref_1, Fixed &ref_2)
 {
-	std::cout << "Fixed	&Fixed::min" << std::endl;
 	if (ref_1.fixed_point < ref_2.fixed_point)
 		return (ref_1);
 	return (ref_2);
@@ -180,7 +168,6 @@ Fixed	&Fixed::min(Fixed &ref_1, Fixed &ref_2)
 
 Fixed	&Fixed::max(Fixed &ref_1, Fixed &ref_2)
 {
-	std::cout << "Fixed	&Fixed::max" << std::endl;
 	if (ref_1.fixed_point > ref_2.fixed_point)
 		return (ref_1);
 	return (ref_2);
@@ -188,7 +175,6 @@ Fixed	&Fixed::max(Fixed &ref_1, Fixed &ref_2)
 
 const Fixed	&Fixed::min(const Fixed &ref_1, const Fixed &ref_2)
 {
-	std::cout << "const Fixed	&Fixed::min" << std::endl;
 	if (ref_1.fixed_point < ref_2.fixed_point)
 		return (ref_1);
 	return (ref_2);
@@ -196,7 +182,7 @@ const Fixed	&Fixed::min(const Fixed &ref_1, const Fixed &ref_2)
 
 const Fixed	&Fixed::max(const Fixed &ref_1, const Fixed &ref_2)
 {
-	std::cout << "const Fixed	&Fixed::max" << std::endl;
+	std::cout << ref_1 << "****" << ref_2 << std::endl;
 	if (ref_1.fixed_point > ref_2.fixed_point)
 		return (ref_1);
 	return (ref_2);
