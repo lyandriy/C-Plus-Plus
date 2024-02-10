@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 16:29:42 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/10 19:19:15 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/10 18:14:45 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/10 18:21:14 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include "Point.hpp"
+#ifndef CLAP_TRAP_HPP
+#define CLAP_TRAP_HPP
 
-int	main()
-{
-	Point	a(0, 0);
-	Point	b(4, 0);
-	Point	c(-2, 5);
-	Point	point(20, 0);
-	
-	if (bsp(a, b, c, point))
-	{
-		std::cout << "true" << std::endl;
-		return (0);
-	}
-	std::cout << "false" << std::endl;
-	return (0);
-}
+#include <iostream>
+#include "ScavTrap.hpp"
+
+
+
+#endif
