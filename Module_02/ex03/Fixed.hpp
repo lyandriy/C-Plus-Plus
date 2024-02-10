@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:29:39 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/09 19:44:42 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/10 17:32:11 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FIXED_HPP
 
 #include <iostream>
-#include "Point.hpp"
+#include <cmath>
 
 class Fixed
 {

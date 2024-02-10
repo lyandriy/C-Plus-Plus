@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 16:28:46 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/04 16:58:33 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/10 17:35:21 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ OBJ = $(SRC:.cpp=.o)
 
 NAME = fixed
 
+OBJDIR = obj
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)
