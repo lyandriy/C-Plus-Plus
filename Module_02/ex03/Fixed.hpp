@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:29:39 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/10 17:32:11 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:20:41 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ class Fixed
 		bool	operator>(const Fixed &other) const;
 		bool	operator<=(const Fixed &other)const;
 		bool	operator>=(const Fixed &other)const;
+		bool	operator==(const Fixed &other)const;
 		bool	operator!=(const Fixed &other)const;
 
 	/*---ARITHMETIC OPERATORS---*/

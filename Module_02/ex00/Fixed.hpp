@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:05 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/03 19:10:06 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:07:54 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Fixed
 		~Fixed();
 
 		Fixed(const Fixed &other);
-		Fixed &operator= (const Fixed &other);
+		Fixed &operator=(const Fixed &other);
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);

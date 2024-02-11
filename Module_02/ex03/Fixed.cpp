@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:29:36 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/10 17:30:46 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:19:41 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Fixed::Fixed(const int parameter){
 }
 
 Fixed::Fixed(const float number){
-	this->fixed_point = number * (1 << this->fract_bits);
+	this->fixed_point = roundf(number * (1 << this->fract_bits));
 }
 
 /*---GETER/SETER---*/
@@ -97,13 +97,19 @@ bool	Fixed::operator>=(const Fixed &other) const
 	return (false);
 }
 
+bool	Fixed::operator==(const Fixed &other) const
+{
+	if (this->fixed_point == other.fixed_point)
+		return (true);
+	return (false);
+}
+
 bool	Fixed::operator!=(const Fixed &other) const
 {
 	if (this->fixed_point != other.fixed_point)
 		return (true);
 	return (false);
 }
-
 
 /*---ARITHMETIC OPERATORS---*/
 
@@ -121,14 +127,12 @@ Fixed	Fixed::operator-(const Fixed &other)
 
 Fixed	Fixed::operator*(const Fixed &other)
 {
-	this->fixed_point = (this->fixed_point * other.fixed_point) >> this->fract_bits;
-	return (*this);
+	return (Fixed(this->toFloat() * other.toFloat()));
 }
 
 Fixed	Fixed::operator/(const Fixed &other)
 {
-	this->fixed_point = (this->fixed_point / other.fixed_point) >> this->fixed_point;
-	return (*this);
+	return (Fixed(this->toFloat() / other.toFloat()));
 }
 
 /*--INCREMENT/DECREMENT---*/
@@ -147,7 +151,7 @@ Fixed	Fixed::operator++(int)
 
 Fixed	Fixed::operator--()
 {
-	this->fixed_point++;
+	this->fixed_point--;
 	return (*this);
 }
 

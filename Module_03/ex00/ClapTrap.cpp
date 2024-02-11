@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:12:43 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/10 21:28:04 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:24:31 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,33 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
 	return (*this);
 }
 
-void ClapTrap::attack(const std::string& target)
+void ClapTrap::attack(const std::string& target)//atacar
 {
-	this->AttackDamage++;
-	std::cout << "ClapTrap " << this->_name
-	<< " attacks" << target << " causing" << this->AttackDamage << std::endl;
+	if (EnergyPoints > 0)
+	{
+		this->EnergyPoints--;
+		std::cout << "ClapTrap " << this->_name << " attacks " << target
+		<< " causing " << this->AttackDamage << " points of damage!" << std::endl;
+	}
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int amount)//recibir el ataque
 {
-
+	if (amount > 0)
+	{
+		this->HitPoint -= amount;
+		std::cout << this->_name << " lost " << amount << " Hit Point" << std::endl;
+	}
+	if (this->HitPoint <= 0)
+		std::cout << this->_name << " is dead" << std::endl;
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(unsigned int amount)//repararse
 {
-
+	if (amount > 0 && )
+	{
+		if (this->EnergyPoints > 0 && this->HitPoint < 10 && )
+		this->HitPoint += amount;
+		this->EnergyPoints -= amount;
+	}
 }

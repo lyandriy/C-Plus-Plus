@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 16:23:02 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/09 19:40:50 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:19:32 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Fixed::Fixed(const int parameter){
 }
 
 Fixed::Fixed(const float number){
-	this->fixed_point = number * (1 << this->fract_bits);
+	this->fixed_point = roundf(number * (1 << this->fract_bits));
 }
 
 /*---GETER/SETER---*/
@@ -96,13 +96,19 @@ bool	Fixed::operator>=(const Fixed &other) const
 	return (false);
 }
 
+bool	Fixed::operator==(const Fixed &other) const
+{
+	if (this->fixed_point == other.fixed_point)
+		return (true);
+	return (false);
+}
+
 bool	Fixed::operator!=(const Fixed &other) const
 {
 	if (this->fixed_point != other.fixed_point)
 		return (true);
 	return (false);
 }
-
 
 /*---ARITHMETIC OPERATORS---*/
 
@@ -120,14 +126,12 @@ Fixed	Fixed::operator-(const Fixed &other)
 
 Fixed	Fixed::operator*(const Fixed &other)
 {
-	this->fixed_point = (this->fixed_point * other.fixed_point) >> this->fract_bits;
-	return (*this);
+	return (Fixed(this->toFloat() * other.toFloat()));
 }
 
 Fixed	Fixed::operator/(const Fixed &other)
 {
-	this->fixed_point = (this->fixed_point / other.fixed_point) >> this->fixed_point;
-	return (*this);
+	return (Fixed(this->toFloat() / other.toFloat()));
 }
 
 /*--INCREMENT/DECREMENT---*/
@@ -146,7 +150,7 @@ Fixed	Fixed::operator++(int)
 
 Fixed	Fixed::operator--()
 {
-	this->fixed_point++;
+	this->fixed_point--;
 	return (*this);
 }
 
@@ -182,7 +186,6 @@ const Fixed	&Fixed::min(const Fixed &ref_1, const Fixed &ref_2)
 
 const Fixed	&Fixed::max(const Fixed &ref_1, const Fixed &ref_2)
 {
-	std::cout << ref_1 << "****" << ref_2 << std::endl;
 	if (ref_1.fixed_point > ref_2.fixed_point)
 		return (ref_1);
 	return (ref_2);
