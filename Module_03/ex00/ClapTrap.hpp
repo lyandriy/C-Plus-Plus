@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:12:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/10 21:14:14 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/15 17:02:21 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class ClapTrap
 {
 	private:
 		std::string	_name;
-		int			HitPoint;//puntos de vida //pierde cuando le atacan//recupera cuando se repara
-		int			EnergyPoints;//puntos de energia//pierde al repararse o atacar
-		int			AttackDamage;//puntos de daño de ataque
+		int			_hP;//puntos de vida //pierde cuando le atacan//recupera cuando se repara
+		int			_eP;//puntos de energia//pierde al repararse o atacar
+		int			_aD;//puntos de daño de ataque
 	public:
 		ClapTrap(std::string name);
 		~ClapTrap();

@@ -6,14 +6,14 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:12:43 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/11 19:24:31 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:31:12 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(std::string name)
-		: HitPoint(10), EnergyPoints(10), AttackDamage(0), _name(name){
+		: _name(name), _hP(10), _eP(10), _aD(0){
 	std::cout << _name << " has been created" << std::endl;
 }
 
@@ -30,39 +30,47 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
 {
 	this->_name = other._name;
-	this->HitPoint = other.HitPoint;
-	this->EnergyPoints = other.EnergyPoints;
-	this->AttackDamage = other.AttackDamage;
+	this->_hP = other._hP;
+	this->_eP = other._eP;
+	this->_aD = other._aD;
 	return (*this);
 }
 
-void ClapTrap::attack(const std::string& target)//atacar
+void ClapTrap::attack(const std::string& target)
 {
-	if (EnergyPoints > 0)
+	if (_eP > 0)
 	{
-		this->EnergyPoints--;
+		this->_eP--;
 		std::cout << "ClapTrap " << this->_name << " attacks " << target
-		<< " causing " << this->AttackDamage << " points of damage!" << std::endl;
+		<< " causing " << this->_aD << " points of damage!" << std::endl;
 	}
 }
 
-void ClapTrap::takeDamage(unsigned int amount)//recibir el ataque
+void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (amount > 0)
 	{
-		this->HitPoint -= amount;
+		this->_hP -= amount;
 		std::cout << this->_name << " lost " << amount << " Hit Point" << std::endl;
 	}
-	if (this->HitPoint <= 0)
+	if (this->_hP <= 0)
 		std::cout << this->_name << " is dead" << std::endl;
 }
 
-void ClapTrap::beRepaired(unsigned int amount)//repararse
+void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (amount > 0 && )
+	if (this->_eP <= 0)
 	{
-		if (this->EnergyPoints > 0 && this->HitPoint < 10 && )
-		this->HitPoint += amount;
-		this->EnergyPoints -= amount;
+		std::cout << this->_name << " doesn't have energy points" << std::endl;
+		return ;
 	}
+	if ((this->_eP - amount) >= 0)
+	{
+		this->_hP += amount;
+		this->_eP -= amount;
+		std::cout << this->_name << " repairs itself with "
+		<< amount << " hit points" << std::endl;
+	}
+	else
+		std::cout << "Insufficient energy point" << std::endl;
 }
