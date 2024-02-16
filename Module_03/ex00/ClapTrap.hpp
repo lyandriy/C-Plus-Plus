@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:12:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/15 17:02:21 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:31:23 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,22 @@ class ClapTrap
 {
 	private:
 		std::string	_name;
-		int			_hP;//puntos de vida //pierde cuando le atacan//recupera cuando se repara
-		int			_eP;//puntos de energia//pierde al repararse o atacar
-		int			_aD;//puntos de daño de ataque
+		int			_hP;
+		int			_eP;
+		int			_aD;
 	public:
-		ClapTrap(std::string name);
+	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
+		ClapTrap();
 		~ClapTrap();
 
+	/*---COPY CONSTRUCTOR/ASSIGNMENT OPERATOR---*/
 		ClapTrap(const ClapTrap &other);
 		ClapTrap	&operator=(const ClapTrap &other);
 
+	/*---CONSTRUCTORS---*/
+		ClapTrap(std::string name);
+
+	/*---METHODS---*/
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

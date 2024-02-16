@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 18:14:13 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/10 18:14:38 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/16 19:23:10 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = ClapTrap
+NAME = DiamondTrap
 
 OBJDIR = obj
 CXX = g++

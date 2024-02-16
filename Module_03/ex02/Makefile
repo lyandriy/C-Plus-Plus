@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 18:13:32 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/10 18:14:04 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/16 19:23:19 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC = main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = ClapTrap
+NAME = FragTrap
 
 OBJDIR = obj
 CXX = g++

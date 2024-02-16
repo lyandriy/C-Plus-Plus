@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:48 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/15 19:32:21 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/16 20:27:29 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	main(void)
 	robot.takeDamage(2);
 	robot.beRepaired(1);
 	robot.guardGate();
-	robot.operato();
+	
 	return (0);
 }

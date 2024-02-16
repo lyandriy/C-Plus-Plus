@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:52 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/15 19:41:35 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:42:41 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@
 class	ScavTrap : public ClapTrap
 {
 	public:
+	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 		ScavTrap(void);
 		~ScavTrap();
 
+	/*---COPY CONSTRUCTOR/ASSIGNMENT OPERATOR---*/
 		ScavTrap(const ScavTrap &other);
 		ScavTrap	&operator=(const ScavTrap &other);
 
+	/*---CONSTRUCTORS---*/
 		ScavTrap(std::string name);
 
+	/*---METHODS---*/
 		void	attack(const std::string& target);
 		void	guardGate();
-		//void	operato(void);
 };
 
 #endif

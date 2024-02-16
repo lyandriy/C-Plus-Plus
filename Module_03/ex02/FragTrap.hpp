@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:15:02 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/15 19:48:26 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:49:57 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@
 class	FragTrap : public ClapTrap
 {
 	public:
+	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 		FragTrap(void);
 		~FragTrap();
 
+	/*---COPY CONSTRUCTOR/ASSIGNMENT OPERATOR---*/
 		FragTrap(const FragTrap &other);
 		FragTrap	&operator=(const FragTrap &other);
 
+	/*---CONSTRUCTORS---*/
 		FragTrap(std::string name);
 
+	/*---METHODS---*/
 		void	attack(const std::string& target);
 		void	highFivesGuys(void);
-		void	operato(void);
 };
 
 #endif
