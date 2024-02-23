@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:12:43 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 20:26:24 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:17:37 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 
-ClapTrap::ClapTrap(void)
+ClapTrap::ClapTrap(void) : _name("Nameless"), _hP(10), _eP(10), _aD(0)
 {
 	std::cout << "Default constructor ClapTrap called" << std::endl;
 }
@@ -65,13 +65,18 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount > 0)
+	if (amount > 0 && this->_hP > 0)
 	{
-		this->_hP -= amount;
-		std::cout << "ClapTrap " << this->_name << " lost " << amount << " Hit Point" << std::endl;
+		if (this->_hP > amount)
+		{
+			this->_hP -= amount;
+			std::cout << "ClapTrap " << this->_name << " lost " << amount << " Hit Point" << std::endl;
+		}
+		else
+			this->_hP = 0;
 	}
 	if (this->_hP <= 0)
-		std::cout << "ClapTrap " << this->_name << " is dead" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is not available." << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)

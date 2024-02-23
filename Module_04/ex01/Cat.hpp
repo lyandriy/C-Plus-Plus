@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 18:14:48 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:00:59 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/16 20:36:00 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/21 08:50:06 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef CAT_HPP
+#define CAT_HPP
 
-int	main(void)
+#include <iostream>
+#include "Animal.hpp"
+#include "Brain.hpp"
+
+class Cat : public Animal
 {
-	ScavTrap robot("Trap");
+	private:
+		Brain *_cat;
+	public:
+		Cat();
+		~Cat();
 
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.takeDamage(200);
-	robot.beRepaired(40);
-	robot.guardGate();
-	
-	return (0);
-}
+		Cat(const Cat &other);
+		Cat	&operator=(const Cat &other);
+
+		void	makeSound() const;
+};
+
+#endif

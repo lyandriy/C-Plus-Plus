@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:15:18 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 19:56:01 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:18:24 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class	DiamondTrap : public ScavTrap, public FragTrap
 		std::string	DiamName;
 	public:
 	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
-		DiamondTrap(void);
+		DiamondTrap();
 		~DiamondTrap();
 
 	/*---COPY CONSTRUCTOR/ASSIGNMENT OPERATOR---*/

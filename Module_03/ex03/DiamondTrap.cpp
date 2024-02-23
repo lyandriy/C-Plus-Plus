@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:15:16 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 19:59:09 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:19:28 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 
 /*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 
-DiamondTrap::DiamondTrap(void){
+DiamondTrap::DiamondTrap(void) : ClapTrap()
+{
 	std::cout << "Default constructor DiamondTrap called" << std::endl;
+	this->DiamName = "Nameless";
+	this->ClapTrap::_name.append("_clap_name");
+	this->_hP = FragTrap::_hP;
+	this->_eP = ScavTrap::_eP;
+	this->_aD = FragTrap::_aD;
 }
 
-DiamondTrap::~DiamondTrap(void){
+DiamondTrap::~DiamondTrap(void)
+{
 	std::cout << "DiamondTrap Destructor called" << std::endl;
 }
 
@@ -42,12 +49,12 @@ DiamondTrap	&DiamondTrap::operator=(const DiamondTrap &other)
 
 /*---CONSTRUCTORS---*/
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"),  DiamName(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), DiamName(name)
 {
 	std::cout << "DiamondTrap " << this->DiamName << " monster has been created" << std::endl;
-	this->_hP = 100;
-	this->_eP = 50;
-	this->_aD = 30;
+	this->_hP = FragTrap::_hP;
+	this->_eP = 50;//ScavTrap::_eP;
+	this->_aD = FragTrap::_aD;
 }
 
 /*---METHODS---*/

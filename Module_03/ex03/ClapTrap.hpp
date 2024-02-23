@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:45 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 20:01:14 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:33:16 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class ClapTrap
 {
 	protected:
-		std::string	_name;
-		int			_hP;//Hit points
-		int			_eP;//Energy points
-		int			_aD;//Attack damage
+		std::string		_name;
+		unsigned int	_hP;//Hit points
+		unsigned int	_eP;//Energy points
+		unsigned int	_aD;//Attack damage
 	public:
 	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 		ClapTrap();
@@ -33,7 +33,6 @@ class ClapTrap
 
 	/*---CONSTRUCTORS---*/
 		ClapTrap(std::string name);
-		ClapTrap(std::string name, int _hP_, int _eP_, int _aD_);
 
 	/*---METHODS---*/
 		void	attack(const std::string& target);

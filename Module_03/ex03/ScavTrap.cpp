@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:50 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 20:23:56 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:40:59 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 /*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 
-ScavTrap::ScavTrap(void){
+ScavTrap::ScavTrap(void) : ClapTrap("Nameless"){
 	std::cout << "Default constructor ScavTrap called" << std::endl;
+	this->_hP = 100;
+	this->_eP = 50;
+	this->_aD = 20;
 }
 
 ScavTrap::~ScavTrap(){
@@ -42,9 +45,12 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &other)
 
 /*---CONSTRUCTORS---*/
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap " << this->_name << " robot has been created" << std:: endl;
+	this->_hP = 100;
+	this->_eP = 50;
+	this->_aD = 20;
 }
 
 /*---METHODS---*/

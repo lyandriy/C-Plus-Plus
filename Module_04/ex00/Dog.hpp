@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 18:14:48 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:00:59 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/16 20:36:05 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/21 08:50:43 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef DOG_HPP
+#define DOG_HPP
 
-int	main(void)
+#include <iostream>
+#include "Animal.hpp"
+
+class Dog : public Animal
 {
-	ScavTrap robot("Trap");
+	public:
+		Dog();
+		~Dog();
 
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.takeDamage(200);
-	robot.beRepaired(40);
-	robot.guardGate();
-	
-	return (0);
-}
+		Dog(const Dog &other);
+		Dog	&operator=(const Dog &other);
+
+		void	makeSound() const;
+};
+
+#endif

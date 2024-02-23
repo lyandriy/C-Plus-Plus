@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:45 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 19:39:09 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:48:44 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class ClapTrap
 {
 	protected:
-		std::string	_name;
-		int			_hP;
-		int			_eP;
-		int			_aD;
+		std::string		_name;
+		unsigned int	_hP;
+		unsigned int	_eP;
+		unsigned int	_aD;
 	public:
 	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
 		ClapTrap();
@@ -33,7 +33,6 @@ class ClapTrap
 
 	/*---CONSTRUCTORS---*/
 		ClapTrap(std::string name);
-		ClapTrap(std::string name, int _hP_, int _eP_, int _aD_);
 
 	/*---METHODS---*/
 		void	attack(const std::string& target);

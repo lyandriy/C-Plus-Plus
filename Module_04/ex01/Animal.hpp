@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 18:14:48 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:00:59 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/16 20:35:56 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/21 08:50:30 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
-int	main(void)
+#include <iostream>
+
+class Animal
 {
-	ScavTrap robot("Trap");
+	protected:
+		std::string	type;
+	public:
+		Animal();
+		virtual ~Animal();
 
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.takeDamage(200);
-	robot.beRepaired(40);
-	robot.guardGate();
-	
-	return (0);
-}
+		Animal(const Animal &other);
+		Animal	&operator=(const Animal &other);
+
+		std::string	getType(void) const;
+		virtual void	makeSound() const;
+};
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:52 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 19:54:04 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:45:13 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-class	ScavTrap : public virtual ClapTrap
+class	ScavTrap : virtual public ClapTrap
 {
 	public:
 	/*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/

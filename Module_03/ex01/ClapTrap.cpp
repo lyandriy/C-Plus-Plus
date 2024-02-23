@@ -6,14 +6,14 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:14:43 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/16 20:26:15 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:48:50 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 /*---DEFAULT CONSTRUCTOR/DESTRUCTOR---*/
-ClapTrap::ClapTrap(void){
+ClapTrap::ClapTrap(void) : _name("Nameless"), _hP(10), _eP(10), _aD(0){
 	std::cout << "Default constructor ClapTrap called" << std::endl;
 }
 
@@ -46,11 +46,6 @@ ClapTrap::ClapTrap(std::string name)
 	std::cout << "ClapTrap " << _name << " has been created" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name, int _hP_, int _eP_, int _aD_)
-		: _name(name), _hP(_hP_), _eP(_eP_), _aD(_aD_){
-	std::cout << "ClapTrap " << _name << " has been created" << std::endl;
-}
-
 /*---METHODS---*/
 
 void ClapTrap::attack(const std::string& target)
@@ -67,13 +62,18 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount > 0)
+	if (amount > 0 && this->_hP > 0)
 	{
-		this->_hP -= amount;
-		std::cout << "ClapTrap " << this->_name << " lost " << amount << " Hit Point" << std::endl;
+		if (this->_hP > amount)
+		{
+			this->_hP -= amount;
+			std::cout << "ClapTrap " << this->_name << " lost " << amount << " Hit Point" << std::endl;
+		}
+		else
+			this->_hP = 0;
 	}
 	if (this->_hP <= 0)
-		std::cout << "ClapTrap " << this->_name << " is dead" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is not available." << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)

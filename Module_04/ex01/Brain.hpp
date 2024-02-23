@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 18:14:48 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:00:59 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/21 08:38:47 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/21 09:25:20 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-int	main(void)
+#include <iostream>
+
+class Brain
 {
-	ScavTrap robot("Trap");
+	private:
+		std::string	ideas[100];
+	public:
+		Brain();
+		~Brain();
 
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.attack("Clap");
-	robot.takeDamage(200);
-	robot.beRepaired(40);
-	robot.guardGate();
-	
-	return (0);
-}
+		Brain(const Brain &other);
+		Brain	&operator=(const Dog &other);
+};
+
+#endif
