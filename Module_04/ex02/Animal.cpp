@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:35:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:38:36 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:54:11 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,4 @@ Animal	&Animal::operator=(const Animal &other)
 std::string	Animal::getType(void) const
 {
 	return (this->type);
-}
-
-void	Animal::makeSound() const
-{
-	std::cout << "OwO" << std::endl;
 }

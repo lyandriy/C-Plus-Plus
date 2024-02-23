@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 08:38:47 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:58:34 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/16 20:35:56 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/23 20:02:45 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
 #include <iostream>
 
-class Brain
+class Animal
 {
-	private:
-		std::string	ideas[100];
+	protected:
+		std::string	type;
 	public:
-		Brain();
-		~Brain();
+		Animal();
+		virtual ~Animal();
 
-		Brain(const Brain &other);
-		Brain	&operator=(const Brain &other);
+		Animal(const Animal &other);
+		Animal	&operator=(const Animal &other);
+
+		std::string	getType(void) const;
+		virtual void	makeSound() const = 0;
 };
 
 #endif

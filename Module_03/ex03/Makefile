@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 18:14:13 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/16 19:23:10 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/23 20:21:28 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ OBJ = $(SRC:.cpp=.o)
 
 NAME = DiamondTrap
 
-OBJDIR = obj
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)

@@ -6,13 +6,12 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:37:28 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 19:19:01 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:03:38 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "stdlib.h"
 
 /*int	main(void)
 {
@@ -32,17 +31,27 @@ void seeleaks()
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	delete meta;
-	delete j;
-	delete i;
+	Animal *A = new Dog();
+
+		A->makeSound();
+	Animal* meta[4];
+	for (int i = 0; i < 2; i++)
+		meta[i] = new Dog();
+	for (int i = 2; i < 4; i++)
+		meta[i] = new Cat();
+	for (int i = 0; i < 2; i++)
+		std::cout << meta[i]->getType() << " " << std::endl;
+	for (int i = 2; i < 4; i++)
+		std::cout << meta[i]->getType() << " " << std::endl;
+	for (int i = 0; i < 2; i++)
+		meta[i]->makeSound();
+	for (int i = 2; i < 4; i++)
+		meta[i]->makeSound();
+	for (int i = 0; i < 2; i++)
+		delete meta[i];
+	for (int i = 2; i < 4; i++)
+		delete meta[i];
+	delete A;
 	atexit(&seeleaks);
 	return 0;
 }

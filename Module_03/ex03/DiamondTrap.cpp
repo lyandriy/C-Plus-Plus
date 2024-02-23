@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 18:15:16 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:19:28 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:26:34 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap(void) : ClapTrap()
 	this->DiamName = "Nameless";
 	this->ClapTrap::_name.append("_clap_name");
 	this->_hP = FragTrap::_hP;
-	this->_eP = ScavTrap::_eP;
+	this->_eP = 50;//ScavTrap::_eP;
 	this->_aD = FragTrap::_aD;
 }
 

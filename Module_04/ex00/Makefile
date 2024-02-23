@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 20:32:14 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/17 18:40:38 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/23 20:21:23 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ OBJ = $(SRC:.cpp=.o)
 
 NAME = Animal
 
-OBJDIR = obj
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)

@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 18:13:04 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/15 19:32:32 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/23 20:21:34 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ OBJ = $(SRC:.cpp=.o)
 
 NAME = ScavTrap
 
-OBJDIR = obj
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)

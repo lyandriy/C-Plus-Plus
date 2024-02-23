@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/10 18:13:32 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/16 19:23:19 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/02/23 20:21:31 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ OBJ = $(SRC:.cpp=.o)
 
 NAME = FragTrap
 
-OBJDIR = obj
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 all: $(NAME)

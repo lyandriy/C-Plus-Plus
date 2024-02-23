@@ -5,17 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/10 18:11:02 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/23 20:21:38 by lyandriy         ###   ########.fr        #
+#    Created: 2024/02/16 20:32:14 by lyandriy          #+#    #+#              #
+#    Updated: 2024/02/23 20:21:15 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp \
-	  ClapTrap.cpp \
+	  Animal.cpp \
+	  Dog.cpp \
+	  Cat.cpp \
+	  Brain.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = ClapTrap
+NAME = Animal
 
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
