@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 20:23:57 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 12:17:26 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/24 10:52:06 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/24 12:02:33 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef CURE_HPP
+#define CURE_HPP
 
 #include <iostream>
+#include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-class AMateria
+class Cure : public AMateria
 {
 	protected:
 		std::string	type;
 	public:
-		AMateria();
-		virtual ~AMateria();
+		Cure();
+		virtual ~Cure();
 
-		AMateria(const AMateria &other);
-		AMateria &operator=(const AMateria &other);
-		AMateria(std::string const &type);
+		Cure(const Cure &other);
+		Cure &operator=(const Cure &other);
+		Cure(std::string const & type);
 
-		std::string const &getType() const;
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		std::string const & getType() const;
+		Cure*	clone() const ;
+		void	use(ICharacter& target);
 };
 
 #endif

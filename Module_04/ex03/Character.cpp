@@ -1,52 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 20:23:59 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 12:04:24 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/24 12:27:38 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/24 16:24:23 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "Character.hpp"
 
-AMateria::AMateria()
+Character::Character()
 {
 	std::cout << "Default constructor AMateria called" << std::endl;
 }
 
-AMateria::~AMateria()
+Character::~Character()
 {
 	std::cout << "AMateria Destructor called" << std::endl;
 }
 
-AMateria::AMateria(const AMateria &other)
+Character::Character(const Character &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
-AMateria	&AMateria::operator=(const AMateria &other)
+Character	&Character::operator=(const Character &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->type = other.type;
+	//this->type = other.type;
 	return (*this);
 }
 
-AMateria::AMateria(std::string const &type)
+std::string const	&Character::getName() const
 {
-	std::cout << "Constructor AMateria called" << std::endl;
-	this->type = type;
+	//return (this->type);
 }
 
-std::string const	&AMateria::getType() const
+void	Character::equip(AMateria* m)
 {
-	return (this->type);
+
+}
+void	Character::unequip(int idx)
+{
+
 }
 
-void	AMateria::use(ICharacter& target)
+void	Character::use(int idx, ICharacter& target)
 {
-	std::cout << "I am Materia" << std::endl;
+
 }

@@ -1,52 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 20:23:59 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 12:04:24 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/02/24 12:50:57 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/02/24 16:17:36 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "MateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
-AMateria::AMateria()
+MateriaSource::MateriaSource()
 {
 	std::cout << "Default constructor AMateria called" << std::endl;
+	this->stock_mat = 0;
 }
 
-AMateria::~AMateria()
+MateriaSource::~MateriaSource()
 {
 	std::cout << "AMateria Destructor called" << std::endl;
 }
 
-AMateria::AMateria(const AMateria &other)
+MateriaSource::MateriaSource(const MateriaSource &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
-AMateria	&AMateria::operator=(const AMateria &other)
+MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->type = other.type;
+	//this->type = other.type;
 	return (*this);
 }
 
-AMateria::AMateria(std::string const &type)
+void	MateriaSource::learnMateria(AMateria* other)
 {
-	std::cout << "Constructor AMateria called" << std::endl;
-	this->type = type;
+	if (this->stock_mat < 4)
+		this->materia[this->stock_mat++] = other;
 }
 
-std::string const	&AMateria::getType() const
+AMateria*	MateriaSource::createMateria(std::string const &type)
 {
-	return (this->type);
-}
-
-void	AMateria::use(ICharacter& target)
-{
-	std::cout << "I am Materia" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (materia[i] && (materia[i]->getType() == type))
+			return (materia[i]->clone());
+	}
+	return (NULL);
 }
