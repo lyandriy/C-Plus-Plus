@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:48:03 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 15:56:26 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:29:26 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define MATERIAL_SOURCE_HPP
 
 #include <iostream>
-#include "AMateria.hpp"
 #include "IMateriaSource.hpp"
+#include "AMateria.hpp"
 
 class MateriaSource : public IMateriaSource
 {

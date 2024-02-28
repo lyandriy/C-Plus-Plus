@@ -6,15 +6,17 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:23:59 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 12:04:24 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:56:44 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#include <iostream>
 
 AMateria::AMateria()
 {
 	std::cout << "Default constructor AMateria called" << std::endl;
+	this->type = "No type";
 }
 
 AMateria::~AMateria()
@@ -24,13 +26,13 @@ AMateria::~AMateria()
 
 AMateria::AMateria(const AMateria &other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor AMateria called" << std::endl;
 	*this = other;
 }
 
 AMateria	&AMateria::operator=(const AMateria &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	std::cout << "Copy assignment operator AMateria called" << std::endl;
 	this->type = other.type;
 	return (*this);
 }
@@ -48,5 +50,5 @@ std::string const	&AMateria::getType() const
 
 void	AMateria::use(ICharacter& target)
 {
-	std::cout << "I am Materia" << std::endl;
+	std::cout << "I am " << target.getName() << std::endl;
 }

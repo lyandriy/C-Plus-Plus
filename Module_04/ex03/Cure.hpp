@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:52:06 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 12:02:33 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:04:01 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 class Cure : public AMateria
 {
-	protected:
-		std::string	type;
 	public:
 		Cure();
 		virtual ~Cure();
@@ -29,8 +27,7 @@ class Cure : public AMateria
 		Cure &operator=(const Cure &other);
 		Cure(std::string const & type);
 
-		std::string const & getType() const;
-		Cure*	clone() const ;
+		Cure*	clone() const;
 		void	use(ICharacter& target);
 };
 

@@ -6,41 +6,44 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:50:57 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 16:17:36 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:56:27 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "Default constructor AMateria called" << std::endl;
+	std::cout << "Default constructor MateriaSource called" << std::endl;
 	this->stock_mat = 0;
+	for (int i = 0; i < 4; i++)
+		this->materia[i] = NULL;
 }
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << "MateriaSource Destructor called" << std::endl;
+	for (int i = 0; i <= this->stock_mat; i++)
+		delete materia[i];
 }
 
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor MateriaSource called" << std::endl;
 	*this = other;
 }
 
 MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
-	//this->type = other.type;
+	std::cout << "Copy assignment operator MateriaSource called" << std::endl;
+	for(int i = 0; i < 4; i++)
+		this->materia[i] = other.materia[i];
 	return (*this);
 }
 
 void	MateriaSource::learnMateria(AMateria* other)
 {
-	if (this->stock_mat < 4)
+	if (other && this->stock_mat < 4)
 		this->materia[this->stock_mat++] = other;
 }
 

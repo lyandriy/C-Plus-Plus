@@ -6,22 +6,12 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:37:28 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 20:03:38 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:20:39 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include "Cat.hpp"
-
-/*int	main(void)
-{
-	Cat	Michi;
-	Dog	Firulais;
-
-	Michi.makeSound();
-	Firulais.makeSound();
-	return (0);
-}*/
 
 void seeleaks()
 {

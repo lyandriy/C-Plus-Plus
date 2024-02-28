@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:52:11 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/24 12:16:59 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:03:27 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 class Ice : public AMateria
 {
-	protected:
-		std::string	type;
 	public:
 		Ice();
 		virtual ~Ice();
@@ -29,9 +27,8 @@ class Ice : public AMateria
 		Ice &operator=(const Ice &other);
 		Ice(std::string const & type);
 
-		std::string const &getType() const;
-		Ice* clone() const;
-		void use(ICharacter& target);
+		Ice*	clone() const;
+		void	use(ICharacter& target);
 };
 
 #endif

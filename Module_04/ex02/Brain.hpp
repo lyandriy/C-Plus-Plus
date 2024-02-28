@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 08:38:47 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/23 18:58:34 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:42:03 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@
 class Brain
 {
 	private:
+		int	count;
 		std::string	ideas[100];
 	public:
 		Brain();
 		~Brain();
 
+		/*void		setIdeas(std::string other);
+		std::string	getIdeas(int);*/
 		Brain(const Brain &other);
 		Brain	&operator=(const Brain &other);
 };
