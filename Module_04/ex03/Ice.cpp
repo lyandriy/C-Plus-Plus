@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:52:09 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/25 18:11:07 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:41:28 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,24 @@
 
 Ice::Ice()
 {
-	std::cout << "Default constructor Ice called" << std::endl;
 	this->type = "ice";
 }
 
-Ice::~Ice()
-{
-	std::cout << "Ice Destructor called" << std::endl;
-}
+Ice::~Ice(){}
 
 Ice::Ice(const Ice &other)
 {
-	std::cout << "Copy constructor Ice called" << std::endl;
 	*this = other;
 }
 
 Ice	&Ice::operator=(const Ice &other)
 {
-	std::cout << "Copy assignment operator Ice called" << std::endl;
 	this->type = other.type;
 	return (*this);
 }
 
 Ice::Ice(std::string const &type)
 {
-	std::cout << "Constructor Ice called" << std::endl;
 	this->type = type;
 }
 

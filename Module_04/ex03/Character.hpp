@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:44 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/25 18:04:33 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:34:34 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class Character : public ICharacter
 {
 	private:
 		std::string	name;
-		int			stock_mat;
 		AMateria	*materia[4];
 		int			_unequip;
 		AMateria	*unequip_materia[100];

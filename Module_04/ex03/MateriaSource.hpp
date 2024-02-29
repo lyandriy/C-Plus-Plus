@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:48:03 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/25 15:29:26 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:35:24 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 class MateriaSource : public IMateriaSource
 {
 	private:
-		int			stock_mat;
 		AMateria	*materia[4];
 	public:
 		MateriaSource();
