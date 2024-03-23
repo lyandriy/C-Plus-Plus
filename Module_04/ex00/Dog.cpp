@@ -6,14 +6,15 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:36:03 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/21 08:33:33 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:17:00 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-Dog::Dog(void) : Animal(){
+Dog::Dog(void) : Animal()
+{
 	std::cout << "Default constructor Dog called" << std::endl;
 	this->type = "Dog";
 }

@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:50:57 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/29 17:41:59 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:17:58 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ MateriaSource::MateriaSource(const MateriaSource &other)
 MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 {
 	for(int i = 0; i < 4; i++)
-		this->materia[i] = other.materia[i];
+	{
+		if (other.materia[i])
+			this->materia[i] = other.materia[i]->clone();
+		else
+			this->materia[i] = NULL;
+	}
 	return (*this);
 }
 

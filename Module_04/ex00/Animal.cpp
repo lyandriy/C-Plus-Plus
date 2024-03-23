@@ -6,14 +6,15 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:35:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/29 17:46:59 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:17:06 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-Animal::Animal(void){
+Animal::Animal(void)
+{
 	std::cout << "Default constructor Animal called" << std::endl;
 	this->type = "No type";
 }
@@ -43,5 +44,5 @@ std::string	Animal::getType(void) const
 
 void	Animal::makeSound() const
 {
-	std::cout << "Hola" << std::endl;
+	std::cout << "..." << std::endl;
 }

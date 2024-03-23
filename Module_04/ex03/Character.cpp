@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:38 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/29 17:38:54 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:16:56 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,22 @@ Character::Character(const Character &other)
 
 Character	&Character::operator=(const Character &other)
 {
+	
 	this->name = other.name;
 	for(int i = 0; i < 4; i++)
-		this->materia[i] = other.materia[i];
+	{
+		if (other.materia[i])
+			this->materia[i] = other.materia[i]->clone();
+		else
+			this->materia[i] = NULL;
+	}
 	for(int i = 0; i < 100; i++)
-		this->unequip_materia[i] = other.unequip_materia[i];
+	{
+		if (other.unequip_materia[i])
+			this->unequip_materia[i] = other.unequip_materia[i]->clone();
+		else
+			this->unequip_materia[i] = NULL;
+	}
 	return (*this);
 }
 

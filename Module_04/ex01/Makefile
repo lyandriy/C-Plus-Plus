@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/16 20:32:14 by lyandriy          #+#    #+#              #
-#    Updated: 2024/02/28 16:46:29 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/03/02 16:27:40 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ SRC = main.cpp \
 	  Dog.cpp \
 	  Cat.cpp \
 	  Brain.cpp \
+	  WrongAnimal.cpp \
+	  WrongCat.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

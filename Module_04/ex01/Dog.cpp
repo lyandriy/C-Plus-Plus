@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:36:03 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/28 16:42:18 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:18:13 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	Dog::makeSound() const
 	std::cout << "Woof-Woof" << std::endl;
 }
 
-/*void	Dog::set_(std::string other)
+void	Dog::set_(std::string other)
 {
 	this->Brain_dog->setIdeas(other);
 }
@@ -56,4 +56,4 @@ void	Dog::makeSound() const
 std::string	Dog::getIdea(int i)
 {
 	return (this->Brain_dog->getIdeas(i));
-}*/
+}

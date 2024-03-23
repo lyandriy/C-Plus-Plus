@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:22:27 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/29 17:45:02 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:55:49 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 #include "ICharacter.hpp"
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
-
-/*void seeleaks()
-{
-	system("leaks -q Materia");
-}*/
 
 int main()
 {
@@ -37,17 +32,12 @@ int main()
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	me->unequip(3);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
+	me->unequip(2);
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
 	delete bob;
 	delete me;
 	delete src;
-	//atexit(&seeleaks);
 	return 0;
 }

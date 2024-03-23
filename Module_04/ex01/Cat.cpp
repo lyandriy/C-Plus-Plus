@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:35:58 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/28 16:42:09 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/02 16:58:00 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	Cat::makeSound() const
 	std::cout << "Meow" << std::endl;
 }
 
-/*void	Cat::set_(std::string other)
+void	Cat::set_(std::string other)
 {
 	this->Brain_cat->setIdeas(other);
 }
@@ -56,4 +56,4 @@ void	Cat::makeSound() const
 std::string	Cat::getIdea(int i)
 {
 	return (this->Brain_cat->getIdeas(i));
-}*/
+}

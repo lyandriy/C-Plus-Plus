@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 08:38:47 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/28 16:42:03 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:06:01 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Brain
 		Brain();
 		~Brain();
 
-		/*void		setIdeas(std::string other);
-		std::string	getIdeas(int);*/
+		void		setIdeas(std::string other);
+		std::string	getIdeas(int);
 		Brain(const Brain &other);
 		Brain	&operator=(const Brain &other);
 };

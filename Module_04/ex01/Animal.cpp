@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:35:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/02/29 17:47:58 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:22:00 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ std::string	Animal::getType(void) const
 
 void	Animal::makeSound() const
 {
-	std::cout << "Hola" << std::endl;
+	std::cout << "..." << std::endl;
 }
