@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:57:58 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/23 17:35:29 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:03:54 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ROBOTOMY_REQUEST_FORM_HPP
 
 #include <iostream>
+#include <cstdlib>
 #include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm

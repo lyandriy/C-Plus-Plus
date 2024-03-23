@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:58:11 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/23 17:59:22 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:46:06 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 		ShrubberyCreationForm(std::string target);
 
+		class NotOpenFile : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
 		void	execute(Bureaucrat const & executor) const;
 };
 

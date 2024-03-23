@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:26 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/23 17:45:29 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:08:08 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,11 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target)
 
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	
+	int random = rand();
+	if (this->getSign() > 72 || this->getExecute() > 42)
+		throw GradeTooLowException();
+	if (random % 2)
+		std::cout << "drilling noises" << std::endl;
+	else
+		std::cout << "the robotomy failed" << std::endl;//crear una excepcion?
 }

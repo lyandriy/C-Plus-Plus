@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:29 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/23 17:58:44 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:46:02 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,19 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (this->getSign() > 145 || this->getExecute() > 137)
 		throw GradeTooLowException();
-	std::ofstream	on_file(this->target + "_shrubbery");
+	std::ofstream	file(this->target + "_shrubbery");
+	if (!file.is_open())
+		throw NotOpenFile();
+	file << "   *   " << std::endl;
+	file << "  ***  " << std::endl;
+	file << " ***** " << std::endl;
+	file << "*******" << std::endl;
+	file << "   *   " << std::endl;
+	file << "   *   " << std::endl;
+	file.close();
+}
+
+const char* ShrubberyCreationForm::NotOpenFile::what() const throw()
+{
+	return ("error");
 }
