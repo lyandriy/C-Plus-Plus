@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:22:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/22 17:44:10 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:29:54 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Bureaucrat::Bureaucrat(int grade, std::string _name) : name (_name)
 	this->Grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)//???
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)
 {
 	*this = other;
 }
@@ -50,20 +50,18 @@ int	Bureaucrat::getGrade() const
 	return (this->Grade);
 }
 
-void	Bureaucrat::iGrade(int increment)
+void	Bureaucrat::iGrade()
 {
-	if ((this->Grade - increment) >= 1)
-		this->Grade -= increment;
-	else
-		std::cout << "Invalid increment" << std::endl;//o throw?
+	if (this->Grade == 1)
+		throw GradeTooHighException();
+	this->Grade--;
 }
 
-void	Bureaucrat::dGrade(int decrement)
+void	Bureaucrat::dGrade()
 {
-	if ((this->Grade + decrement) <= 150)
-		this->Grade += decrement;
-	else
-		std::cout << "Invalid decrement" << std::endl;
+	if (this->Grade == 150)
+		throw GradeTooLowException();
+	this->Grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

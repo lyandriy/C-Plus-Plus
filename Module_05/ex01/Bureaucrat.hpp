@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:22:38 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/22 19:27:15 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:31:06 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ class Bureaucrat
 		std::string	getName() const;
 		int	getGrade() const;
 
-		void	iGrade(int increment);
-		void	dGrade(int decrement);
+		void	iGrade();
+		void	dGrade();
 		void	signForm(Form &form);
 
 		class	GradeTooHighException : public std::exception

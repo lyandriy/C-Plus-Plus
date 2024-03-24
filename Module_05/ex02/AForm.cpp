@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:18 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/23 17:54:10 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:34:30 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ AForm::AForm(std::string _name, int _sign, int _execute) : name(_name), _signed(
 		throw GradeTooLowException();
 }
 
-AForm::AForm(const AForm &other) : name(other.name), sign(other.sign), _execute(other._execute)
+AForm::AForm(const AForm &other) : name(other.name), _signed(other._signed), sign(other.sign), _execute(other._execute)
+{
+	*this = other;
+}
+
+AForm &AForm::operator=(const AForm &other)
 {
 	if (this->sign < 1 || this->_execute < 1)
 		throw GradeTooHighException();
 	if (this->sign > 150 || this->_execute > 150)
 		throw GradeTooLowException();
-	this->_signed = other._signed;
-}
-
-AForm &AForm::operator=(const AForm &other)
-{
 	this->_signed = other._signed;
 	return (*this);
 }
@@ -62,15 +62,9 @@ int	AForm::getExecute() const
 void	AForm::beSigned(Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->sign)
-	{
-		bureaucrat.signForm(*this);
 		this->_signed = true;
-	}
 	else
-	{
-		bureaucrat.signForm(*this);
 		throw GradeTooLowException();
-	}
 }
 
 const char* AForm::GradeTooHighException::what() const throw()

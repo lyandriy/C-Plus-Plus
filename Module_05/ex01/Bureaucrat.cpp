@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:22:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/22 19:30:57 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:30:58 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Bureaucrat::Bureaucrat(int grade, std::string _name) : name (_name)
 	this->Grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)//???
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name)
 {
 	*this = other;
 }
@@ -50,29 +50,32 @@ int	Bureaucrat::getGrade() const
 	return (this->Grade);
 }
 
-void	Bureaucrat::iGrade(int increment)
+void	Bureaucrat::iGrade()
 {
-	if ((this->Grade - increment) >= 1)
-		this->Grade -= increment;
-	else
-		std::cout << "Invalid increment" << std::endl;//o throw?
+	if (this->Grade == 1)
+		throw GradeTooHighException();
+	this->Grade--;
 }
 
-void	Bureaucrat::dGrade(int decrement)
+void	Bureaucrat::dGrade()
 {
-	if ((this->Grade + decrement) <= 150)
-		this->Grade += decrement;
-	else
-		std::cout << "Invalid decrement" << std::endl;
+	if (this->Grade == 150)
+		throw GradeTooLowException();
+	this->Grade++;
 }
 
 void	Bureaucrat::signForm(Form &form)
 {
-	if (form.getSigned() == true)
+	try
+	{
+		form.beSigned(*this);
 		std::cout << this->getName() << " signed " << form.getName();
-	else
-		std::cout << this->getName() << " couldn’t sign " << form.getName()
-		<< " because " << " Grade Too Low Exception " << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << this->getName() << " couldn’t sign " << form.getName()
+		<< " because " << e.what() << std::endl;
+	}
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

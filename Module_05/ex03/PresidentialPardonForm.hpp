@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 19:57:58 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/24 12:30:53 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/03/22 19:57:48 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/03/23 17:35:20 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMY_REQUEST_FORM_HPP
-#define ROBOTOMY_REQUEST_FORM_HPP
+#ifndef PRESIDENTIAL_PARDON_FORM_HPP
+#define PRESIDENTIAL_PARDON_FORM_HPP
 
 #include <iostream>
-#include <cstdlib>
 #include "AForm.hpp"
 
-class RobotomyRequestForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 	private:
 		std::string	target;
 	public:
-		RobotomyRequestForm();
-		~RobotomyRequestForm();
+		PresidentialPardonForm();
+		~PresidentialPardonForm();
 
-		RobotomyRequestForm(const RobotomyRequestForm &other);
-		RobotomyRequestForm	&operator=(const RobotomyRequestForm &other);
-		RobotomyRequestForm(std::string target);
+		PresidentialPardonForm(const PresidentialPardonForm &other);
+		PresidentialPardonForm	&operator=(const PresidentialPardonForm &other);
+		PresidentialPardonForm(std::string target);
 
-		class RobotomyFailed : public std::exception
-		{
-			public:
-				const char* what() const throw();
-		};
 		void	execute(Bureaucrat const & executor) const;
 };
 
