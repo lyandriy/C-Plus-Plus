@@ -6,13 +6,13 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:26 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/24 16:31:32 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:24:49 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : target("No target"), AForm("RobotomyRequestForm", 75, 42)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 75, 42), target("No target")
 {};
 
 RobotomyRequestForm::~RobotomyRequestForm(){};
@@ -37,10 +37,10 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	int random = rand();
 
 	if (!this->getSigned())
-		throw GradeTooLowException();
+		throw Bureaucrat::FormNotSigned();
 	if (executor.getGrade() > this->getExecute())
-		throw GradeTooLowException();
-	if (random % 2)///seran 50%?
+		throw Bureaucrat::GradeTooLowExecute();
+	if (random % 2)
 		std::cout << "drilling noises" << std::endl;
 	else
 		throw RobotomyFailed();

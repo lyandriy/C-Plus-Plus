@@ -6,13 +6,13 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:29 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/24 16:30:10 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:36:10 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : target("No target"), AForm("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), target("No target")
 {};
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){};
@@ -32,12 +32,12 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 	this->target = target;
 }
 
-void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	if (!this->getSigned())
-		throw GradeTooLowException();
+		throw Bureaucrat::FormNotSigned();
 	if (executor.getGrade() > this->getExecute())
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowExecute();
 	std::ofstream	file(this->target + "_shrubbery");
 	if (!file.is_open())
 		throw NotOpenFile();
@@ -52,5 +52,5 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 
 const char* ShrubberyCreationForm::NotOpenFile::what() const throw()
 {
-	return ("error");
+	return ("Error. File not created");
 }

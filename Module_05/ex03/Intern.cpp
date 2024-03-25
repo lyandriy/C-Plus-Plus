@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 16:32:48 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/24 17:25:31 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:33:55 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,41 +23,49 @@ Intern::Intern(const Intern &other)
 
 Intern	&Intern::operator=(const Intern &other)
 {
+	(void)other;
 	return (*this);
 }
 
-AForm	*Intern::makeForm(std::string form, std::string target)
+AForm	*CreateForm(int form, std::string target)
 {
-	std::string	type_form[4] = {"PresidentialPardonForm", "RobotomyRequestForm",
-								"ShrubberyCreationForm"};
-	int	i = 1;
-	int	j = 0;
-
-	while (i != 0 || j <= 3)
-	{
-		i = form.compare(type_form[j]);
-		j++;
-	}
-	switch (j)
+	switch (form)
 	{
 		case 0:
 		{
-			std::cout << "Intern creates " << type_form[j - 1] << std::endl;
+			std::cout << "Intern creates PresidentialPardonForm" << std::endl;
 			return (new PresidentialPardonForm(target));
 		}
 		case 1:
 		{
-			std::cout << "Intern creates " << type_form[j - 1] << std::endl;
+			std::cout << "Intern creates RobotomyRequestForm" << std::endl;
 			return (new RobotomyRequestForm(target));
 		}
 		case 2:
 		{
-			std::cout << "Intern creates " << type_form[j - 1] << std::endl;
+			std::cout << "Intern creates ShrubberyCreationForm" << std::endl;
 			return (new ShrubberyCreationForm(target));
 		}
-		case 3:
-			throw	WrongTypeForm();
 	}
+	return (NULL);
+}
+
+AForm	*Intern::makeForm(std::string form, std::string target)
+{
+	std::string	_form[3][4] = {{"PresidentialPardonForm", "Presidential Pardon Form", "Presidential Pardon", "presidential pardon"},
+								{"RobotomyRequestForm", "Robotomy Request Form", "Robotomy Request", "robotomy request"},
+								{"ShrubberyCreationForm", "Shrubbery Creation Form", "Shrubbery Creation", "shrubbery creation"}};
+
+	for (int i = 0; i < 3; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			if (form == _form[i][j])
+				return CreateForm(i, target);
+		}
+	}
+	throw	WrongTypeForm();
+	return (NULL);
 }
 
 const char *Intern::WrongTypeForm::what() const throw()
