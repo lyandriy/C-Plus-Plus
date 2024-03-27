@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:58:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/25 18:40:48 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:43:01 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ class AForm
 				const char* what() const throw();
 		};
 
-	friend std::ostream &operator<<(std::ostream& oso, AForm& other);
 };
+
+std::ostream &operator<<(std::ostream& oso, AForm& other);
 
 #endif

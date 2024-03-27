@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:22 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/25 18:31:37 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:20:44 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,8 @@
 #include "ShrubberyCreationForm.hpp"
 #include "stdlib.h"
 
-void seeleaks()
-{
-	system("leaks -q Bureaucrat");
-}
-
 int main()
 {
-	atexit(&seeleaks);
 	try
 	{
 		Bureaucrat bob;

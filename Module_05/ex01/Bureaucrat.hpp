@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:22:38 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/24 18:31:06 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:40:26 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -47,7 +49,8 @@ class Bureaucrat
 				const char* what() const throw();
 		};
 
-		friend std::ostream &operator<<(std::ostream& oso, Bureaucrat& other);
 };
+
+std::ostream &operator<<(std::ostream& oso, Bureaucrat& other);
 
 #endif

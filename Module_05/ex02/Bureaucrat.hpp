@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 19:55:31 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/25 18:21:25 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:39:50 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ class Bureaucrat
 		{
 			const char* what() const throw();
 		};
-		friend std::ostream &operator<<(std::ostream& oso, Bureaucrat& other);
 };
+
+std::ostream &operator<<(std::ostream& oso, Bureaucrat& other);
 
 #endif
