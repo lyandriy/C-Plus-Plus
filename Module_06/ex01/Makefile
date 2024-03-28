@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/25 19:10:03 by lyandriy          #+#    #+#              #
-#    Updated: 2024/03/28 20:10:38 by lyandriy         ###   ########.fr        #
+#    Created: 2024/03/28 20:10:39 by lyandriy          #+#    #+#              #
+#    Updated: 2024/03/28 20:10:50 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp \
-	  ScalarConverter.cpp \
+	  Serializer.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

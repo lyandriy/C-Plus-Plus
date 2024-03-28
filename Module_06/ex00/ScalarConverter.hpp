@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:10:43 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/27 16:52:20 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:10:34 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SCALAR_CONVERTER_HPP
 
 #include <iostream>
+#include <cctype>
 
 class ScalarConverter
 {

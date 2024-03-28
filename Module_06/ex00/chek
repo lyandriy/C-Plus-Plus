@@ -1,0 +1,17 @@
+1 -1 +1 1.1 2.4f 1234 -1.1f 1..1 . 1. 1.f f ff gh 1.1f1
+1 ok
+-1 ok
++1 ok
+1.1 ok
+2.4f ok
+1234 ok
+-1.1f ok
+
+1..1 error
+. error
+1. error
+1.f error
+f error
+ff error
+gh error
+1.1f1 error

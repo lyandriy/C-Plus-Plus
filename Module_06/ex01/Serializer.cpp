@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 19:10:15 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/28 16:41:20 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/03/28 20:10:51 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/03/28 20:19:52 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int	main(int argc, char *argv[])
+Serializer::Serializer(){}
+
+Serializer::~Serializer(){}
+
+Serializer::Serializer(const Serializer &other)
 {
-	(void)argc;
-	int i = 1;
-	while (argv[i])
-	{
-		ScalarConverter::convert(argv[i]);
-		i++;
-	}
-	return (0);
+	*this = other;
+}
+
+Serializer &Serializer::operator=(const Serializer &other)
+{
+	(void)other;
+	return (*this);
+}
+
+uintptr_t serialize(Data* ptr)
+{
+
+}
+
+Data* deserialize(uintptr_t raw)
+{
+
 }
