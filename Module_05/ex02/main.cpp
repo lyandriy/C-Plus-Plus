@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:22 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/25 19:05:38 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/31 12:47:10 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,17 @@ int main()
 	std::cout << "************ RobotomyRequestForm\n";
 	try
 	{
-		Bureaucrat marlyn(10, "marlyn");
-		RobotomyRequestForm a("Form_marlyn");
-		marlyn.executeForm(a);
-		marlyn.signForm(a);
-		marlyn.executeForm(a);
-		marlyn.executeForm(a);
-		marlyn.executeForm(a);
-		marlyn.executeForm(a);
-		marlyn.executeForm(a);
-		Bureaucrat bob;
-		RobotomyRequestForm b("Form_marlyn");
-		bob.signForm(b);
-		bob.executeForm(b);
+		Bureaucrat bob(10, "bob");
+		RobotomyRequestForm a("Robotomy");
+		std::cout << bob << std::endl;
+		std::cout << a << std::endl;
+		bob.executeForm(a);
+		bob.signForm(a);
+		bob.executeForm(a);
+		bob.executeForm(a);
+		bob.executeForm(a);
+		bob.executeForm(a);
+		bob.executeForm(a);
 	}
 	catch(const std::exception& e)
 	{
@@ -43,15 +41,13 @@ int main()
 	std::cout << "************ PresidentialPardonForm\n";
 	try
 	{
-		Bureaucrat marlyn(10, "marlyn");
-		PresidentialPardonForm a("Form_marlyn");
-		marlyn.executeForm(a);
-		marlyn.signForm(a);
-		marlyn.executeForm(a);
-		Bureaucrat bob;
-		RobotomyRequestForm b("Form_marlyn");
-		bob.signForm(b);
-		bob.executeForm(b);
+		Bureaucrat bob(5, "bob");
+		PresidentialPardonForm a("Presidential");
+		std::cout << bob << std::endl;
+		std::cout << a << std::endl;
+		bob.executeForm(a);
+		bob.signForm(a);
+		bob.executeForm(a);
 	}
 	catch(const std::exception& e)
 	{
@@ -60,15 +56,13 @@ int main()
 	std::cout << "************ ShrubberyCreationForm\n";
 	try
 	{
-		Bureaucrat marlyn(10, "marlyn");
-		ShrubberyCreationForm a("Form_marlyn");
-		marlyn.executeForm(a);
-		marlyn.signForm(a);
-		marlyn.executeForm(a);
-		Bureaucrat bob;
-		RobotomyRequestForm b("Form_marlyn");
-		bob.signForm(b);
-		bob.executeForm(b);
+		Bureaucrat bob(5, "bob");
+		ShrubberyCreationForm a("Shrubbery");
+		std::cout << bob << std::endl;
+		std::cout << a << std::endl;
+		bob.executeForm(a);
+		bob.signForm(a);
+		bob.executeForm(a);
 	}
 	catch(const std::exception& e)
 	{

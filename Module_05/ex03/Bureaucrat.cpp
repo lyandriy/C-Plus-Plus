@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:01:20 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/25 18:21:11 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/31 13:01:10 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ const char* Bureaucrat::GradeTooLowExecute::what() const throw()
 
 std::ostream &operator<<(std::ostream& oso, Bureaucrat& other)
 {
-	oso << other.getName() << ", bureaucrat grade " << other.getGrade();
+	oso << other.getName() << ", bureaucrat grade is " << other.getGrade();
 	return (oso);
 }
