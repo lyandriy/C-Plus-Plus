@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 20:10:54 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/31 16:31:40 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/03/31 13:05:45 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/03/31 17:37:02 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
+#include "Serializer.hpp"
 
-#include <iostream>
-#include "Data.hpp"
-
-class Data;
-
-class Serializer
+int	main()
 {
-	private:
-		Serializer();
-	public:
-		~Serializer();
-		Serializer(const Serializer &other);
-		Serializer	&operator=(const Serializer &other);
+	Data *ptr = new Data(1);
+	uintptr_t raw;
 
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
-};
-
-#endif
+	std::cout << ptr << std::endl;
+	raw = Serializer::serialize(ptr);
+	Data *ptr_des = Serializer::deserialize(raw);
+	std::cout << ptr_des << std::endl;
+	delete ptr;
+	return (0);
+}

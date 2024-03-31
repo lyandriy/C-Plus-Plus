@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 20:10:54 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/31 16:31:40 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/03/31 16:30:03 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/03/31 17:25:33 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
+#ifndef DATA_HPP
+#define DATA_HPP
 
 #include <iostream>
-#include "Data.hpp"
 
-class Data;
-
-class Serializer
+class Data
 {
 	private:
-		Serializer();
+		int	members;
 	public:
-		~Serializer();
-		Serializer(const Serializer &other);
-		Serializer	&operator=(const Serializer &other);
+		Data();
+		~Data();
 
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
+		Data(const Data &other);
+		Data	&operator=(const Data &other);
+		Data(int _members);
 };
 
 #endif

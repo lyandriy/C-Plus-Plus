@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 20:10:51 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/28 20:19:52 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/31 17:17:39 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ Serializer &Serializer::operator=(const Serializer &other)
 	return (*this);
 }
 
-uintptr_t serialize(Data* ptr)
+uintptr_t Serializer::serialize(Data* ptr)
 {
-
+	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
-Data* deserialize(uintptr_t raw)
+Data* Serializer::deserialize(uintptr_t raw)
 {
-
+	return (reinterpret_cast<Data*>(raw));
 }

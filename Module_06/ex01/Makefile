@@ -6,12 +6,13 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/28 20:10:39 by lyandriy          #+#    #+#              #
-#    Updated: 2024/03/28 20:10:50 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/03/31 17:27:45 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.cpp \
 	  Serializer.cpp \
+	  Data.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
