@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:22:38 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/27 17:37:16 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:50:08 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ class Bureaucrat
 		class	GradeTooHighException : public std::exception
 		{
 			public:
-				const char* what() const throw();
+				const char* what() const;
 		};
 		class	GradeTooLowException : public std::exception
 		{
 			public:
-				const char* what() const throw();
+				const char* what() const;
 		};
 
 };

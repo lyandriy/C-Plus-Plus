@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:22:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/31 12:32:23 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/03/31 19:16:55 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	Bureaucrat::dGrade()
 	this->Grade++;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw()
+const char* Bureaucrat::GradeTooHighException::what() const
 {
 	return ("Grade Too High Exception");
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw()
+const char* Bureaucrat::GradeTooLowException::what() const
 {
 	return ("Grade Too Low Exception");
 }

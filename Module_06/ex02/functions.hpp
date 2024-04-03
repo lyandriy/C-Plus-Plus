@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   functions.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/31 17:45:27 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/03 18:06:57 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/04/03 18:06:33 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/04/03 18:09:18 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-#define BASE_HPP
+#ifndef FUNCTIONS_HPP
+#define FUNCTIONS_HPP
 
 #include <iostream>
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-class Base
-{
-	public:
-		virtual ~Base(){};
-};
-
-
+Base *generate(void);
+void identify(Base* p);
+void identify(Base& p);
 
 #endif
