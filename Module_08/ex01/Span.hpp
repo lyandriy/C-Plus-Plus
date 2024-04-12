@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 19:10:43 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/06 17:12:38 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/04/10 16:45:33 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/04/12 19:14:53 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALAR_CONVERTER_HPP
-#define SCALAR_CONVERTER_HPP
+#ifndef SPAN_HPP
+#define SPAN_HPP
 
 #include <iostream>
-#include <cctype>
+#include <vector>
+#include <cstdlib>
 
-class ScalarConverter
+class Span
 {
 	private:
-		ScalarConverter();
+		int	size;
+		int	pos;
+		std::vector<int> vec;
 	public:
-		~ScalarConverter();
+		Span();
+		~Span();
 
-		ScalarConverter(const ScalarConverter &other);
-		ScalarConverter	&operator=(const ScalarConverter &other);
+		Span(const Span &other);
+		Span	&operator=(const Span &other);
+		Span(unsigned int N);
 
-		static void	convert(std::string literal);
+		void	addNumber(int Numb);
+		void	iterator(std::vector<int> _c_vec);
+		void	iterator(int *array, size_t size);
+		int		shortestSpan();
+		int		longestSpan();
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:24:55 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/04 18:49:49 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:52:05 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	f(int i)
 {
-	std::cout << "I am function f and I call array" << i << std::endl;
+	std::cout << "I am function f and I call array " << i << std::endl;
 }
 
 int main()

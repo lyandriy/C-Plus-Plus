@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 19:10:15 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/06 17:12:30 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/04/07 17:14:25 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/04/10 16:38:49 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
-int	main(int argc, char *argv[])
+#include <iostream>
+
+template<typename T> int easyfind(T &container, int parameter)
 {
-	(void)argc;
-	int i = 1;
-	while (argv[i])
+	for (size_t i = 0; i < container.size(); i++)
 	{
-		ScalarConverter::convert(argv[i]);
-		i++;
+		if (container[i] == parameter)
+			return (parameter);
 	}
-	return (0);
+	throw std::exception();
+	return(0);
 }
+
+#endif

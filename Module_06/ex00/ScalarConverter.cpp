@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:10:41 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/03/28 20:08:41 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:09:29 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	messages(char num_char, int num_int, float num_float, double num_double, st
 		std::cout << "float: " << num_float << ".0f" << std::endl;
 		std::cout << "double: " << num_double << ".0" << std::endl;
 	}
-	else if (ptr != std::string::npos && literal[ptr + 1] == '0' && !literal[ptr + 2])
+	else if (ptr != std::string::npos && literal[ptr + 1] == '0')
 	{
 		std::cout << "float: " << num_float << ".0f" << std::endl;
 		std::cout << "double: " << num_double << ".0" << std::endl;
@@ -110,10 +110,10 @@ void	messages(char num_char, int num_int, float num_float, double num_double, st
 
 void	ScalarConverter::convert(std::string literal)
 {
-	char	num_char;
-	int		num_int;
-	float	num_float;
-	double	num_double;
+	char		num_char;
+	int			num_int;
+	float		num_float;
+	double		num_double;
 	long int	max_int;
 
 	if (!except_nan(literal))
@@ -127,7 +127,7 @@ void	ScalarConverter::convert(std::string literal)
 			return ;
 		}
 		num_int = std::atoi(literal.c_str());
-		num_char = num_int;
+		num_char = static_cast<char>(num_int);
 		num_float = static_cast<float>(std::atof(literal.c_str()));
 		num_double = std::atof(literal.c_str());
 		messages(num_char, num_int, num_float, num_double, literal);

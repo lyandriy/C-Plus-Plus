@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/07 10:55:43 by lyandriy          #+#    #+#              #
-#    Updated: 2024/04/07 10:55:50 by lyandriy         ###   ########.fr        #
+#    Created: 2024/04/07 18:40:08 by lyandriy          #+#    #+#              #
+#    Updated: 2024/04/07 18:40:39 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ SRC = main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = array
+NAME = easyfind
 
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
