@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:14:25 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/10 16:38:49 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:13:38 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 
 template<typename T> int easyfind(T &container, int parameter)
 {
-	for (size_t i = 0; i < container.size(); i++)
-	{
-		if (container[i] == parameter)
-			return (parameter);
-	}
+	typename T::iterator	it = std::find(container.begin(), container.end(), parameter);
+	if (it != container.end())
+		return (parameter);
 	throw std::exception();
-	return(0);
 }
 
 #endif

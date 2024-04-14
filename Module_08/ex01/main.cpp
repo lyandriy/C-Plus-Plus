@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:45:27 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/12 20:16:50 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:15:50 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main()
 {
 	std::cout << "***container***" << std::endl;
-	Span	c(3);
+	Span	c(20);
 	std::vector<int> vec;
 
 	vec.push_back(40);
