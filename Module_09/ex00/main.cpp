@@ -6,17 +6,17 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:24:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/18 17:41:14 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:49:44 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-
-void	map_data(std::map<std::string,float> &data)
+void	map_data(std::map<long int,float> &data)
 {
 	std::string		line;
-	float			num;
+	std::string		date_str;
+	long int		date;
 	std::ifstream	data_file("data.csv");
 
 	if (data_file.is_open())
@@ -26,44 +26,53 @@ void	map_data(std::map<std::string,float> &data)
 		{
 			if (line.size() >= 12)
 			{
-				num = static_cast<float>(std::atof(line.substr(11).c_str()));
-				data.insert(std::pair<std::string,float>(line.substr(0, 10), num));
+				date_str = line.substr(0, 10);
+				date_str.erase(7, 1);
+				date_str.erase(4, 1);
+				date = std::atol(date_str.c_str());
+				if (date > 20220329 || date < 20090102)
+					throw std::exception();
+				data.insert(std::pair<int,float>(date,
+					static_cast<float>(std::atof(line.substr(11).c_str()))));
 			}
 		}
 	}
 	else
-		throw std::exception();//no abre el archivo
+		throw std::exception();
 }
 
-void	map_input(std::map<std::string,float> data, std::string file)
+void	map_input(std::map<long int,float> data, std::string file)
 {
 	std::string		line;
-	std::string		_date;
+	std::string		date_str;
+	long int		date_int;
 	double			num;
 	std::ifstream	in_file(file);
-	std::map<std::string,float>::iterator	it;
+	std::map<long int,float>::iterator	it;
 
 	if (in_file.is_open())
 	{
-		std::getline(in_file, line);//saltar "date | value"
+		std::getline(in_file, line);
 		while(std::getline(in_file, line))
 		{
 			if (line.size() >= 14)
 			{
-				num = (std::atof(line.substr(13).c_str()));//copia el value
-				_date = line.substr(0, 10);//copia date
-				it = data.lower_bound(_date);//busca la clave
-				if (it->first != _date && it != data.end())
+				num = (std::atof(line.substr(13).c_str()));
+				date_str = line.substr(0, 10);
+				date_str.erase(7, 1);
+				date_str.erase(4, 1);
+				date_int = std::atol(date_str.c_str());
+				it = data.lower_bound(date_int);
+				if (it->first != date_int && it != data.end())
 					it--;
-				if (num > std::numeric_limits<int>::max())//comprueba si esta bien el num
+				if (num > std::numeric_limits<int>::max())
 					std::cout << "Error: too large a number." << std::endl;
 				else if (num < 0)
 					std::cout << "Error: not a positive number." << std::endl;
-				else if (it != data.end())//imprime resultado
-				{
-					std::cout << _date << " => " << it->first << " = " << it->second << std::endl;
-					std::cout << _date << " => " << num << " = " << (it->second * num) << std::endl;
-				}
+				else if (date_int > 20220329 || date_int < 20090102)
+					std::cout << "Error: bad input => " << line << std::endl;
+				else if (it != data.end())
+					std::cout << line.substr(0, 10) << " => " << num << " = " << (it->second * num) << std::endl;
 				else
 					std::cout << "Error: bad input => " << line << std::endl;
 			}
@@ -72,12 +81,12 @@ void	map_input(std::map<std::string,float> data, std::string file)
 		}
 	}
 	else
-		throw std::exception();//no abre el archivo
+		throw std::exception();
 }
 
 void	btc(std::string file)
 {
-	std::map<std::string,float> data;
+	std::map<long int,float> data;
 
 	map_data(data);
 	map_input(data, file);

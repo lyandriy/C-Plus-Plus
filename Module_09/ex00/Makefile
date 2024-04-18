@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/14 19:24:00 by lyandriy          #+#    #+#              #
-#    Updated: 2024/04/14 19:24:11 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/04/18 18:51:35 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRC = main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = Bitcoin
+NAME = btc
 
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
