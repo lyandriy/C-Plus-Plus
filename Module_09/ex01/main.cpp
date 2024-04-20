@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:34 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/20 16:47:23 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:52:37 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ double	numb_size(char *argv)
 		}
 		else if (argv[i] == ' ')
 			i++;
-		else////
+		else
 			throw error();
 	}
 	if (numb.size() == 1 && oper == 0)
@@ -108,8 +108,8 @@ void	operations(std::stack<char> &oper, std::queue<long int> &numb)
 
 int	rpn(char *argv)
 {
-	std::stack<char>			oper;
-	std::queue<long int>		numb;
+	std::stack<char>		oper;
+	std::queue<long int>	numb;
 	int i = 0;
 
 	if (numb_size(argv))
@@ -120,9 +120,6 @@ int	rpn(char *argv)
 			numb.push(std::atoi(str_isdigit(argv, i).c_str()));
 		if (argv[i] == '+' || argv[i] == '-' || argv[i] == '*' || argv[i] == '/')
 			str_isit(argv, i, oper);
-		/*else if (!std::isdigit(argv[i]) && argv[i] != '+' && argv[i] != '-' &&
-				argv[i] != '*' && argv[i] != '/' && argv[i] != ' ' && argv[i] != '\0' )
-			throw error();*/
 		operations(oper, numb);
 	}
 	return (numb.front());
@@ -146,27 +143,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-
-/*int		numb = 0;
-	int		oper = 0;
-	long int	one_numb;
-
-	for (int i = 0; argv[i]; i++)
-	{
-		if (std::isdigit(argv[i]))
-			numb++;
-		if (argv[i] == '+' || argv[i] == '-' || argv[i] == '*' || argv[i] == '/')
-			oper++;
-	}
-	std::cout << numb << "\n";
-	if (numb == 1)
-	{
-		one_numb = std::atoi(argv);
-		if (one_numb < INT_MIN || one_numb > INT_MAX)
-			throw error();
-		return (one_numb);
-	}
-	if (numb > 10 || (numb - 1) != oper)
-		throw error();
-	return (0);*/
