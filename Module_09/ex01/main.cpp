@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:34 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/20 16:52:37 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:53:32 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long int	make_digit(char *argv, int &i)
 
 double	numb_size(char *argv)
 {
-	std::queue<long int>	numb;
+	std::stack<long int>	numb;
 	int	i = 0;
 	size_t	oper = 0;
 
@@ -49,7 +49,7 @@ double	numb_size(char *argv)
 			throw error();
 	}
 	if (numb.size() == 1 && oper == 0)
-		return (numb.front());
+		return (numb.top());
 	if (numb.size() > 10 || (numb.size() - 1) != oper)
 		throw error();
 	return (0);
@@ -83,33 +83,38 @@ void	str_isit(char *argv, int &i, std::stack<char> &oper)
 	}
 }
 
-void	operations(std::stack<char> &oper, std::queue<long int> &numb)
+void	operations(char *argv, std::stack<long int> &numb, int &i)
 {
-	long int	res_num;
+	long int	first_num;
+	long int	second_num;
 
-	if (numb.empty() || oper.empty())
+	if (numb.empty())
 		throw error();
-	while (!numb.empty() && !oper.empty())
+	while (!std::isdigit(argv[i]) && argv[i] != '\0')
 	{
-		res_num = numb.front();
+		first_num = numb.top();
 		numb.pop();
-		if (oper.top() == '+')
-			numb.push(res_num + numb.front());
-		else if (oper.top() == '-')
-			numb.push(res_num - numb.front());
-		else if (oper.top() == '*')
-			numb.push(res_num * numb.front());
-		else if (oper.top() == '/')
-			numb.push(res_num / numb.front());
+		second_num = numb.top();
 		numb.pop();
-		oper.pop();
+		//std::cout << second_num << argv[i] << first_num;
+		if (argv[i] == '+')
+			numb.push(second_num + first_num);
+		else if (argv[i] == '-')
+			numb.push(second_num - first_num);
+		else if (argv[i] == '*')
+			numb.push(second_num * first_num);
+		else if (argv[i] == '/')
+			numb.push(second_num / first_num);
+		//std::cout << "= " << numb.top() << std::endl;
+		i++;
+		while (argv[i] == ' ')
+			i++;
 	}
 }
 
 int	rpn(char *argv)
 {
-	std::stack<char>		oper;
-	std::queue<long int>	numb;
+	std::stack<long int>	numb;
 	int i = 0;
 
 	if (numb_size(argv))
@@ -118,11 +123,9 @@ int	rpn(char *argv)
 	{
 		while (std::isdigit(argv[i]))
 			numb.push(std::atoi(str_isdigit(argv, i).c_str()));
-		if (argv[i] == '+' || argv[i] == '-' || argv[i] == '*' || argv[i] == '/')
-			str_isit(argv, i, oper);
-		operations(oper, numb);
+		operations(argv, numb, i);
 	}
-	return (numb.front());
+	return (numb.top());
 }
 
 int	main(int argc, char **argv)
