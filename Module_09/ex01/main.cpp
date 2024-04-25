@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:34 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/21 19:57:59 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:29:22 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ double	numb_size(char *argv)
 	}
 	if (numb.size() == 1 && oper == 0)
 		return (numb.top());
-	if (numb.size() > 10 || (numb.size() - 1) != oper)
+	if (/*numb.size() > 10 || */(numb.size() - 1) != oper)
 		throw error();
+	std::cout << "= " << std::endl;
 	return (0);
 }
 

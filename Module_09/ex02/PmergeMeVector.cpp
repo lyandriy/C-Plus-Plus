@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:37:32 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/21 14:05:58 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:02:03 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,74 +16,107 @@ void	check_argv(char *argv)
 {
 	for (int i = 0; argv[i]; i++)
 	{
-		if (i == 0 && argv[i] == '+')
-		{
-			i++;
-			argv++;
-		}
 		if (!std::isdigit(argv[i]))
 			throw error();
 	}
 }
 
-void	fill_vector(std::vector<long int> &vect, char **argv)
+void	fill_vector(std::vector<int> &vect, char **argv)
 {
+	long int	vect_long;
+
 	for (int i = 0; argv[i]; i++)
 	{
 		check_argv(argv[i]);
-		vect.push_back(std::atol(argv[i]));
-		if (vect.back() > INT_MAX)
+		vect_long = std::atol(argv[i]);
+		if (vect_long > INT_MAX)
 			throw error();
+		vect.push_back(vect_long);
 	}
 }
 
-void	print_before(char **argv)
-{
-	std::cout << "Before:";
-	for (int i = 1; argv[i]; i++)
-	{
-		std::cout << " " << argv[i];
-	}
-	std::cout << std::endl;
-}
-
-void	print_after(std::vector<long int> &vect)
+void	print_after(std::vector<int> &vect)
 {
 	std::cout << "After:";
-	for (std::vector<long int>::iterator i = vect.begin(); i < vect.end(); ++i)
+	for (std::vector<int>::iterator i = vect.begin(); i < vect.end(); ++i)
 	{
 		std::cout << " " << *i;
 	}
 	std::cout << std::endl;
-	/*std::cout << "After:";
-	for (int i = 0; i < vect.size(); i++)
+}
+int	jacobsthal()
+{
+
+}
+
+void	insert(std::vector<int> &big, std::vector<int> &small)
+{
+	std::vector<int>::iterator it = small.begin();
+
+	if (small.front() != -1)
 	{
-		std::cout << " " << vect[i];
+		big.insert(big.begin(), small.front());
+		it++;
 	}
-	std::cout << std::endl;*/
+	while (it != small.end())
+	{
+		
+	}
 }
 
-void	print_time(clock_t &time_v, int argc)
+void	marge(std::vector<int> &big, std::vector<int> &small)
 {
-	std::cout << "Time to process a range of " << (argc - 1) << " elements with std::vector : ";
-	std::cout << ((time_v / CLOCKS_PER_SEC) * SEC_TO_MICRO) << " us" << std::endl;
+	std::vector<int> _big;
+	std::vector<int> _small;
+
+	std::vector<int>::iterator it = big.begin();
+	while (_big.size() != (big.size() / 2))//big tiene que tener la mitad del tamaño de vect
+	{
+		if (*it > *(it + 1))//si primer elemento es mas grande que el segundo
+		{
+			_big.push_back(static_cast<int>(*it));
+			_small.push_back(static_cast<int>(*(++it)));
+		}
+		else
+		{
+			_small.push_back(static_cast<int>(*it));
+			_big.push_back(static_cast<int>(*(++it)));
+		}
+		if (it != big.end())
+			it++;
+	}
+	if (big.size() % 2 == 1)//si vect es impar
+	{
+		_big.push_back(static_cast<int>(*it));
+		_small.push_back(-1);
+	}
+	if (_big.size() > 2)
+		marge(_big, _small);
+	insert(_big, _small);
 }
 
-void	merge_insert(std::vector<long int> &vect)
+void	merge_insert(std::vector<int> &vect)
 {
-	for (int i = 0; i )
+	std::vector<int>	big;
+	std::vector<int>	small;
+
+	marge(vect, small);
 }
 
-void	pmerge_me_vector(int argc, char **argv)
+void	pmerge_me_vector(int argc, char **argv, clock_t &time_v)
 {
-	std::vector<long int>	vect;
-	clock_t					time_v;
+	std::vector<int>	vect;
 
 	time_v = clock();
 	fill_vector(vect, argv);
 	merge_insert(vect);
 	time_v = clock() - time_v;
-	print_before(argv);
 	print_after(vect);
-	print_time(time_v, argc);
 }
+
+/*
+Before: 141 79 526 321 [...]
+After: 79 141 321 526 [...]
+Time to process a range of 3000 elements with std::[..] : 62.14389 us
+Time to process a range of 3000 elements with std::[..] : 69.27212 us
+*/
