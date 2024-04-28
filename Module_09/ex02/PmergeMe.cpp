@@ -449,10 +449,10 @@ int main ()
   it = myvector.begin();
   it = myvector.insert ( it , 200 );
 
-  myvector.insert (it,2,300);
+  /*myvector.insert (it,2,300);
 
   // "it" no longer valid, get a new one:
-  it = myvector.begin();
+  it = myvector.begin();*/
 
   std::vector<int> anothervector (2,400);
   myvector.insert (it+2,anothervector.begin(),anothervector.end());
