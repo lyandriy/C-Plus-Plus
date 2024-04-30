@@ -35,7 +35,7 @@ long int	make_digit(char *argv, int &i)
 		i++;
 		count++;
 	}
-	count = std::atol(s.substr((i - count), count).c_str());
+	count = atol(s.substr((i - count), count).c_str());
 	if (flag)
 		count *= -1;
 	if (count < INT_MIN || count > INT_MAX)

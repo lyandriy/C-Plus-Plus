@@ -29,7 +29,7 @@ void	map_data(std::map<long int,float> &data)
 				date_str = line.substr(0, 10);
 				date_str.erase(7, 1);
 				date_str.erase(4, 1);
-				date = std::atol(date_str.c_str());
+				date = atol(date_str.c_str());
 				if (date > 20220329 || date < 20090102)
 					throw std::exception();
 				data.insert(std::pair<int,float>(date,
@@ -61,7 +61,7 @@ void	map_input(std::map<long int,float> data, std::string file)
 				date_str = line.substr(0, 10);
 				date_str.erase(7, 1);
 				date_str.erase(4, 1);
-				date_int = std::atol(date_str.c_str());
+				date_int = atol(date_str.c_str());
 				it = data.lower_bound(date_int);
 				if (it->first != date_int && it != data.end())
 					it--;

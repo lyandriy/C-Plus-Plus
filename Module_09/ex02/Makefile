@@ -13,7 +13,6 @@
 
 SRC = main.cpp \
 	  PmergeMeVector.cpp \
-	  PmergeMeList.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

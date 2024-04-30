@@ -23,7 +23,7 @@ template<typename T> void PmergeMe(T &a, char **argv)
 {
 	for (int i = 0; argv[i]; i++)
 	{
-		a.push_back(std::atol(argv[i]));
+		a.push_back(atol(argv[i]));
 		if (a.back() > INT_MAX || a.back() < 0)
 			throw error();
 	}

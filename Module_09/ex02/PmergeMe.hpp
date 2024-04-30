@@ -17,6 +17,9 @@
 #include <vector>
 #include <list>
 #include <utility>
+#include <cstdlib>
+#include <climits>
+//#include <stdlib.h>
 
 #define SEC_TO_MICRO 1000000.0
 

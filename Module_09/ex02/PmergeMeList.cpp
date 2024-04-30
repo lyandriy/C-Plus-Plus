@@ -26,7 +26,7 @@ void	fill_vector(std::list<long int> &lists, char **argv)
 	for (int i = 0; argv[i]; i++)
 	{
 		check_argv(argv[i]);
-		lists.push_back(std::atol(argv[i]));
+		lists.push_back(atol(argv[i]));
 		if (lists.back() > INT_MAX)
 			throw error();
 	}

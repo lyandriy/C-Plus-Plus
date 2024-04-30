@@ -26,7 +26,7 @@ void	print_contein(std::vector<int> &myvector, std::vector<int> &myvector_s)
 
 }
 
-void	marge_odd(std::vector<int> &big, std::vector<int> &small)
+void	marge_odd(std::vector<int> &big, std::vector<int> &small, int &odd)
 {
 	int	a;
 
@@ -39,22 +39,24 @@ void	marge_odd(std::vector<int> &big, std::vector<int> &small)
 		small[1] = small[0];
 		small[0] = a;
 	}
-	if (big.size() == 3)
+	if (odd != -1)
 	{
-		if (big[2] < big[0] || big[2] == big[0])
+		std::cout << "hola\n";
+		if (odd < big[0] || odd == big[0])
 		{
-			big.insert(big.begin(), big[2]);
+			big.insert(big.begin(), odd);
 			small.insert(small.begin(), small[2]);
 			big.pop_back();
 			small.pop_back();
 		}
-		else if (big[2] < big[1] && big[2] > big[0])
+		else if (odd < big[1] && odd > big[0])
 		{
-			big.insert(big.begin() + 1, big[2]);
+			big.insert(big.begin() + 1, odd);
 			small.insert(small.begin() + 1, small[2]);
 			big.pop_back();
 			small.pop_back();
 		}
+	print_contein(big, small);
 	}
 }
 
@@ -74,7 +76,7 @@ void	fill_vector(std::vector<int> &vect, char **argv)
 	for (int i = 1; argv[i]; i++)
 	{
 		check_argv(argv[i]);
-		vect_long = std::atol(argv[i]);
+		vect_long = ::atol(argv[i]);
 		if (vect_long > INT_MAX)
 			throw error();
 		vect.push_back(vect_long);
@@ -122,14 +124,14 @@ void	insert(std::vector<int> &big, std::vector<int> &small)
 {
 	size_t	a = 1;
 
-	print_contein(big, small);
+	//print_contein(big, small);
 	big.insert(big.begin(), small.front());
 	for (size_t i = 1; i != (small.size() - 1); i++)
 	{
 		a = (jacobsthal(a));
 		if (a > (small.size() - 1))
 			a = (small.size());
-		std::cout << small.size() << " jacobsthal " << a << std::endl;
+		//std::cout << small.size() << " jacobsthal " << a << std::endl;
 		bynary_search(small[a - 1], big, a - 1, 0);
 	}
 }
@@ -161,8 +163,11 @@ void	marge(std::vector<int> &big)
 	}
 	if (_big.size() > 3)
 		marge(_big);
-	if (_big.size() <= 3)
-		marge_odd(_big, _small);
+	if (odd != -1)
+	{
+		
+		marge_odd(_big, _small, odd);
+	}
 	insert(_big, _small);
 	if (odd != -1)
 		bynary_search(odd, _big, (_big.size() - 1), 0);
