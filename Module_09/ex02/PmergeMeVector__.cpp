@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMeVector.cpp                                 :+:      :+:    :+:   */
+/*   PmergeMeVector__.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 19:48:31 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/10 20:21:38 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/05/06 18:06:10 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/05/10 20:14:41 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,39 @@ void	print_contein(std::vector<int> &myvector, std::vector<int> &myvector_s)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
+}
+
+void	marge_odd(std::vector<int> &big, std::vector<int> &small, int &odd)
+{
+	int	a;
+
+	if (big[0] > big[1])
+	{
+		a = big[1];
+		big[1] = big[0];
+		big[0] = a;
+		a = small[1];
+		small[1] = small[0];
+		small[0] = a;
+	}
+	if (odd != -1)
+	{
+		//std::cout << "hola\n";
+		if (big[2] < big[0] || big[2] == big[0])
+		{
+			big.insert(big.begin(), big[2]);
+			small.insert(small.begin(), small[2]);
+			big.pop_back();
+			small.pop_back();
+		}
+		else if (big[2] < big[1] && big[2] > big[0])
+		{
+			big.insert(big.begin() + 1, big[2]);
+			small.insert(small.begin() + 1, small[2]);
+			big.pop_back();
+			small.pop_back();
+		}
+	}
 }
 
 void	check_argv(char *argv)
@@ -86,78 +119,73 @@ void	bynary_search(int small, std::vector<int> &big, size_t end, size_t begin)
 		bynary_search(small, big, new_begin, 0);
 }
 
-std::vector<int>	insert(std::vector<int> big, std::vector<int> small)
+void	insert(std::vector<int> &big, std::vector<int> &small)
 {
 	size_t	a = 1;
 
+	//print_contein(big, small);
 	big.insert(big.begin(), small.front());
-		std::cout << small.size() << "hola\n";
 	for (size_t i = 1; i != (small.size() - 1); i++)
 	{
 		a = (jacobsthal(a));
 		if (a > (small.size() - 1))
 			a = (small.size());
+		//std::cout << small.size() << " jacobsthal " << a << std::endl;
 		bynary_search(small[a - 1], big, a - 1, 0);
 	}
-	return (big);
 }
 
-std::vector<int> merge_insrtion(std::vector<int> _big)
-{
-    std::vector<int> big;
-    std::vector<int> small;
-	std::vector<int> ord_small;
-    int odd =  -1;
 
-    if (_big.size() % 2 == 1)
+void	marge(std::vector<int> &big, std::vector<int> &small)
+{
+	std::vector<int> _big;
+	std::vector<int> _small;
+	int	odd = -1;
+
+	if (small.empty())
 	{
-		odd = _big.back();   
-        std::cout << odd << std::endl;
-		_big.pop_back();
+		_small = small;
 	}
-    for (size_t i = 0; i < _big.size(); i++)
+	if (big.size() % 2 == 1)
 	{
-		if (_big[i] > _big[i + 1])
+		odd = big.back();
+		big.pop_back();
+	}
+	for (size_t i = 0; i < big.size(); i++)
+	{
+		std::cout << big[i] << std::endl;
+		if (big[i] > big[i + 1])
 		{
-			big.push_back(static_cast<int>(_big[i]));
-			small.push_back(static_cast<int>(_big[i + 1]));
+			_big.push_back(static_cast<int>(big[i]));
+			_small.push_back(static_cast<int>(big[i + 1]));
 		}
 		else
 		{
-			small.push_back(static_cast<int>(_big[i]));
-			big.push_back(static_cast<int>(_big[i + 1]));
+			_small.push_back(static_cast<int>(big[i]));
+			_big.push_back(static_cast<int>(big[i + 1]));
 		}
-		if (i != (_big.size() - 1))
+		if (i != (big.size() - 1))
 			i++;
 	}
-	/*if (odd != -1)
-		bynary_search(odd, _big, (_big.size() - 1), 0);*/
-    if (big.size() != 2)
-		big = merge_insrtion(big);
-	/*if (big.size() <= 3)
+	if (_big.size() > 3)
+		marge(_big, _small);
+	print_contein(_big, _small);
+	if (odd != -1)
 	{
-		//return ();
-		// ordenar dos numeros
+		marge_odd(_big, _small, odd);
 	}
-	print_contein(big, small);*/
-	if (!small.empty())
-	{
-		for (size_t i = 0; i < _big.size(); i++)
-		{
-			for (size_t j = 0; j < big.size(); j++)
-			{
-				if (big[j] == _big[i])
-				{
-					ord_small.push_back(small[j]);
-					break;
-				}
-			}
-		}
-	}
-	print_contein(big, ord_small);
-	_big = insert(big, ord_small);//_big es el big ordenado
-    odd++;
-    return (_big);
+	/*insert(_big, _small);
+	if (odd != -1)
+		bynary_search(odd, _big, (_big.size() - 1), 0);
+	big = _big;*/
+}
+
+void	merge_insert(std::vector<int> &vect)
+{
+	std::vector<int>	big;
+	std::vector<int>	small;
+
+	marge(vect, small);
 }
 
 void	pmerge_me_vector(char **argv, clock_t &time_v)
@@ -166,8 +194,7 @@ void	pmerge_me_vector(char **argv, clock_t &time_v)
 
 	time_v = clock();
 	fill_vector(vect, argv);
-	vect = merge_insrtion(vect);
-	std::cout << "myvector contains big:";
+	merge_insert(vect);
 	time_v = clock() - time_v;
 	//print_after(vect);
 }
