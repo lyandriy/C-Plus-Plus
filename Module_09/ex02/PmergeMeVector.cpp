@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/12 18:14:24 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:54:56 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_cont(std::vector<std::pair<int, int> > &myvector)
 {
 	std::cout << "myvector:";
 	for (std::vector<std::pair<int, int> >::iterator it = myvector.begin() ; it != myvector.end(); ++it)
-		std::cout << ' ' << it->first;
+		std::cout << ' ' << it->second;
 	std::cout << '\n';
 }
 
@@ -91,7 +91,8 @@ void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > 
 	std::vector<std::pair<int, int> >::iterator it = big.begin();
 
 	if (small.first <= big[0].first)
-		big.insert(it, small);
+		big[0].first = small.first;
+		//big.insert(it, small);
 	else if (small.first >= big[end].first)
 		big.insert(it + end + 1, small);
 	else
@@ -116,7 +117,8 @@ std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > big, 
 {
 	size_t	a = 1;
 
-	big.insert(big.begin(), small.front());
+	//big.insert(big.begin(), small.front());
+	big[0].first = small[0].first;
 	for (size_t i = 1; i != (small.size() - 1); i++)
 	{
 		a = (jacobsthal(a));
@@ -127,36 +129,40 @@ std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > big, 
 	return (big);
 }
 
-std::vector<std::pair<int, int> > merge_insrtion(std::vector<std::pair<int, int> > _big)
+std::vector<std::pair<int, int> > merge_insrtion(std::vector<std::pair<int, int> > sorted_big)
 {
     std::vector<std::pair<int, int> > big;
     std::vector<std::pair<int, int> > small;
-	std::vector<std::pair<int, int> > ord_small;
+	std::vector<std::pair<int, int> > sorted_small;
     std::pair<int, int> odd =  std::make_pair(-1, -1);
-
-    if (_big.size() % 2 == 1)
+	int j = 0;
+    if (sorted_big.size() % 2 == 1)
 	{
-		odd = _big.back();   
-		_big.pop_back();
+		odd = sorted_big.back();   
+		sorted_big.pop_back();
 	}
-    for (size_t i = 0; i < _big.size(); i++)
+    for (size_t i = 0; i < sorted_big.size(); i++)
 	{
-		if (_big[i] > _big[i + 1])
+		if (sorted_big[i] > sorted_big[i + 1])
 		{
-			big.push_back(std::make_pair(static_cast<int>(_big[i].first), (i / 2)));
-			small.push_back(std::make_pair(static_cast<int>(_big[i + 1].first), (i / 2)));
+			big.push_back(std::make_pair(static_cast<int>(sorted_big[i].first), j));
+			small.push_back(std::make_pair(static_cast<int>(sorted_big[i + 1].first), j));
 		}
 		else
 		{
-			small.push_back(std::make_pair(static_cast<int>(_big[i].first), (i / 2)));
-			big.push_back(std::make_pair(static_cast<int>(_big[i + 1].first), (i / 2)));
+			small.push_back(std::make_pair(static_cast<int>(sorted_big[i].first), j));
+			big.push_back(std::make_pair(static_cast<int>(sorted_big[i + 1].first), j));
 		}
-		if (i != (_big.size() - 1))
+		if (i != (sorted_big.size() - 1))
 			i++;
+		j++;
 	}
-	print_cont(big);
+	/*if (odd.first != -1)
+		small.push_back(std::make_pair(odd.first, small.size()));*/
+	//print_cont(big);
     if (big.size() != 1)
-		_big = merge_insrtion(big);
+		sorted_big = merge_insrtion(big);
+	//print_contein(big, small);
 	if (big.size() == 1)
 	{
 		if (big[0].first < small[0].first)
@@ -167,11 +173,17 @@ std::vector<std::pair<int, int> > merge_insrtion(std::vector<std::pair<int, int>
 	}
 	if (!small.empty())
 	{
-		for (size_t i = 0; i < _big.size(); i++)
-			ord_small.push_back(std::make_pair(small[_big[i].second].first, i));
-		_big = insert(big, ord_small);
+		for (size_t i = 0; i < big.size(); i++)
+			sorted_big[i] = std::make_pair(sorted_big[i].first, big[i].second);
+		for (size_t i = 0; i < big.size(); i++)
+		{
+			std::cout << sorted_big[i].second << " small[_big[i].second].first: " << small[sorted_big[i].second].first << std::endl;
+			sorted_small.push_back(std::make_pair(small[sorted_big[i].second].first, i));
+		}
+		print_cont(sorted_small);
+		sorted_big = insert(big, sorted_small);
 	}
-    return (_big);
+    return (sorted_big);
 }
 
 void	pmerge_me_vector(char **argv, clock_t &time_v)
