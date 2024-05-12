@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:35:21 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/08 19:02:15 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:02:12 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	{
 		if (argc > 1)
 		{
-			print_before(argv);
+			//print_before(argv);
 			
 			pmerge_me_vector(argv, time_v);
 			//pmerge_me_list(argc, argv, time_l);

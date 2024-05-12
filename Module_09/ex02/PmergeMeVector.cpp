@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 19:48:31 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/10 20:21:38 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/05/12 11:47:30 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void	print_contein(std::vector<int> &myvector, std::vector<int> &myvector_s)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
+}
+
+void	print_cont(std::vector<int> &myvector)
+{
+	std::cout << "myvector:";
+	for (std::vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 }
 
 void	check_argv(char *argv)
@@ -73,17 +81,31 @@ size_t	jacobsthal(size_t a)
 	return (0);
 }
 
-void	bynary_search(int small, std::vector<int> &big, size_t end, size_t begin)
+void	bynary_search(int small, std::vector<int> &big, size_t begin, size_t end)
 {
-	size_t new_begin = begin + (end - begin) / 2;
+	size_t new_begin = begin + ((end - begin) / 2);
 	std::vector<int>::iterator it = big.begin();
 
-	if ((begin + 1) == end || small == big[new_begin])
-		big.insert(it + (begin + 1), small);
-	else if (big[new_begin] < small)
-		bynary_search(small, big, end, new_begin);
+	if (small <= big[0])
+		big.insert(it, small);
+	else if (small >= big[end])
+		big.insert(it + end + 1, small);
 	else
-		bynary_search(small, big, new_begin, 0);
+	{
+		while (1)
+		{
+			if (big[new_begin] > small)
+				end = new_begin;
+			if (big[new_begin] < small)
+				begin = new_begin + 1;
+			if (big[new_begin] <= small && big[new_begin + 1] >= small)
+			{
+				big.insert(it + (new_begin + 1), small);
+				break;
+			}
+			new_begin = begin + ((end - begin) / 2);
+		}
+	}
 }
 
 std::vector<int>	insert(std::vector<int> big, std::vector<int> small)
@@ -91,7 +113,6 @@ std::vector<int>	insert(std::vector<int> big, std::vector<int> small)
 	size_t	a = 1;
 
 	big.insert(big.begin(), small.front());
-		std::cout << small.size() << "hola\n";
 	for (size_t i = 1; i != (small.size() - 1); i++)
 	{
 		a = (jacobsthal(a));
@@ -102,7 +123,7 @@ std::vector<int>	insert(std::vector<int> big, std::vector<int> small)
 	return (big);
 }
 
-std::vector<int> merge_insrtion(std::vector<int> _big)
+std::vector<int> merge_insrtion(std::vector<int> _big/*, std::vector<std::vector<int>> &all_small*/)
 {
     std::vector<int> big;
     std::vector<int> small;
@@ -112,7 +133,7 @@ std::vector<int> merge_insrtion(std::vector<int> _big)
     if (_big.size() % 2 == 1)
 	{
 		odd = _big.back();   
-        std::cout << odd << std::endl;
+        //std::cout << odd << std::endl;
 		_big.pop_back();
 	}
     for (size_t i = 0; i < _big.size(); i++)
@@ -130,17 +151,20 @@ std::vector<int> merge_insrtion(std::vector<int> _big)
 		if (i != (_big.size() - 1))
 			i++;
 	}
-	/*if (odd != -1)
-		bynary_search(odd, _big, (_big.size() - 1), 0);*/
-    if (big.size() != 2)
-		big = merge_insrtion(big);
-	/*if (big.size() <= 3)
+	//all_small.push_back(small);
+    if (big.size() != 1)
+		_big = merge_insrtion(big/*, all_small*/);
+	print_cont(big);
+	if (big.size() == 1)
 	{
-		//return ();
-		// ordenar dos numeros
+		if (big[0] < small[0])
+			big.push_back(small[0]);
+		else
+			big.insert(big.begin(), small[0]);
 	}
-	print_contein(big, small);*/
-	if (!small.empty())
+	if (odd != -1)
+		bynary_search(odd, _big, (_big.size() - 1), 0);
+	/*if (!small.empty())
 	{
 		for (size_t i = 0; i < _big.size(); i++)
 		{
@@ -155,19 +179,18 @@ std::vector<int> merge_insrtion(std::vector<int> _big)
 		}
 	}
 	print_contein(big, ord_small);
-	_big = insert(big, ord_small);//_big es el big ordenado
-    odd++;
+	_big = insert(big, ord_small);//_big es el big ordenado*/
     return (_big);
 }
 
 void	pmerge_me_vector(char **argv, clock_t &time_v)
 {
 	std::vector<int>	vect;
+	//std::vector<std::vector<int>>	all_small;
 
 	time_v = clock();
 	fill_vector(vect, argv);
-	vect = merge_insrtion(vect);
-	std::cout << "myvector contains big:";
+	vect = merge_insrtion(vect/*, all_small*/);
 	time_v = clock() - time_v;
 	//print_after(vect);
 }
