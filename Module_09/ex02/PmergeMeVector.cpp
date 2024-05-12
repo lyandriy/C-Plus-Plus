@@ -6,31 +6,33 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/12 11:47:30 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:14:24 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void	print_contein(std::vector<int> &myvector, std::vector<int> &myvector_s)
+void	print_contein(std::vector<std::pair<int, int> > &myvector, std::vector<std::pair<int, int> > &myvector_s)
 {
 	std::cout << "myvector contains big:";
-	for (std::vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
-		std::cout << ' ' << *it;
+	for (std::vector<std::pair<int, int> >::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+		std::cout << ' ' << it->first;
+		//std::cout << ' ' << it->second;
 	std::cout << '\n';
 
 	std::cout << "myvector contains small:";
-	for (std::vector<int>::iterator it = myvector_s.begin() ; it != myvector_s.end(); ++it)
-		std::cout << ' ' << *it;
+	for (std::vector<std::pair<int, int> >::iterator it = myvector_s.begin() ; it != myvector_s.end(); ++it)
+		std::cout << ' ' << it->first;
+		//std::cout << ' ' << it->second;
 	std::cout << '\n';
 
 }
 
-void	print_cont(std::vector<int> &myvector)
+void	print_cont(std::vector<std::pair<int, int> > &myvector)
 {
 	std::cout << "myvector:";
-	for (std::vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
-		std::cout << ' ' << *it;
+	for (std::vector<std::pair<int, int> >::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+		std::cout << ' ' << it->first;
 	std::cout << '\n';
 }
 
@@ -43,9 +45,10 @@ void	check_argv(char *argv)
 	}
 }
 
-void	fill_vector(std::vector<int> &vect, char **argv)
+void	fill_vector(std::vector<std::pair<int, int> > &vect, char **argv)
 {
-	long int	vect_long;
+	long int			vect_long;
+	std::pair<int, int>	pair;
 
 	for (int i = 1; argv[i]; i++)
 	{
@@ -53,15 +56,16 @@ void	fill_vector(std::vector<int> &vect, char **argv)
 		vect_long = ::atol(argv[i]);
 		if (vect_long > INT_MAX)
 			throw error();
-		vect.push_back(vect_long);
+		pair.first = static_cast<int>(vect_long);
+		vect.push_back(pair);
 	}
 }
 
-void	print_after(std::vector<int> &vect)
+void	print_after(std::vector<std::pair<int, int> > &vect)
 {
 	std::cout << "After:";
-	for (std::vector<int>::iterator i = vect.begin(); i < vect.end(); ++i)
-		std::cout << " " << *i;
+	for (std::vector<std::pair<int, int> >::iterator i = vect.begin(); i < vect.end(); ++i)
+		std::cout << " " << i->first;
 	std::cout << std::endl;
 }
 size_t	jacobsthal(size_t a)
@@ -81,24 +85,24 @@ size_t	jacobsthal(size_t a)
 	return (0);
 }
 
-void	bynary_search(int small, std::vector<int> &big, size_t begin, size_t end)
+void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > &big, size_t begin, size_t end)
 {
 	size_t new_begin = begin + ((end - begin) / 2);
-	std::vector<int>::iterator it = big.begin();
+	std::vector<std::pair<int, int> >::iterator it = big.begin();
 
-	if (small <= big[0])
+	if (small.first <= big[0].first)
 		big.insert(it, small);
-	else if (small >= big[end])
+	else if (small.first >= big[end].first)
 		big.insert(it + end + 1, small);
 	else
 	{
 		while (1)
 		{
-			if (big[new_begin] > small)
+			if (big[new_begin].first > small.first)
 				end = new_begin;
-			if (big[new_begin] < small)
+			if (big[new_begin].first < small.first)
 				begin = new_begin + 1;
-			if (big[new_begin] <= small && big[new_begin + 1] >= small)
+			if (big[new_begin].first <= small.first && big[new_begin + 1].first >= small.first)
 			{
 				big.insert(it + (new_begin + 1), small);
 				break;
@@ -108,7 +112,7 @@ void	bynary_search(int small, std::vector<int> &big, size_t begin, size_t end)
 	}
 }
 
-std::vector<int>	insert(std::vector<int> big, std::vector<int> small)
+std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > big, std::vector<std::pair<int, int> > small)
 {
 	size_t	a = 1;
 
@@ -123,74 +127,60 @@ std::vector<int>	insert(std::vector<int> big, std::vector<int> small)
 	return (big);
 }
 
-std::vector<int> merge_insrtion(std::vector<int> _big/*, std::vector<std::vector<int>> &all_small*/)
+std::vector<std::pair<int, int> > merge_insrtion(std::vector<std::pair<int, int> > _big)
 {
-    std::vector<int> big;
-    std::vector<int> small;
-	std::vector<int> ord_small;
-    int odd =  -1;
+    std::vector<std::pair<int, int> > big;
+    std::vector<std::pair<int, int> > small;
+	std::vector<std::pair<int, int> > ord_small;
+    std::pair<int, int> odd =  std::make_pair(-1, -1);
 
     if (_big.size() % 2 == 1)
 	{
 		odd = _big.back();   
-        //std::cout << odd << std::endl;
 		_big.pop_back();
 	}
     for (size_t i = 0; i < _big.size(); i++)
 	{
 		if (_big[i] > _big[i + 1])
 		{
-			big.push_back(static_cast<int>(_big[i]));
-			small.push_back(static_cast<int>(_big[i + 1]));
+			big.push_back(std::make_pair(static_cast<int>(_big[i].first), (i / 2)));
+			small.push_back(std::make_pair(static_cast<int>(_big[i + 1].first), (i / 2)));
 		}
 		else
 		{
-			small.push_back(static_cast<int>(_big[i]));
-			big.push_back(static_cast<int>(_big[i + 1]));
+			small.push_back(std::make_pair(static_cast<int>(_big[i].first), (i / 2)));
+			big.push_back(std::make_pair(static_cast<int>(_big[i + 1].first), (i / 2)));
 		}
 		if (i != (_big.size() - 1))
 			i++;
 	}
-	//all_small.push_back(small);
-    if (big.size() != 1)
-		_big = merge_insrtion(big/*, all_small*/);
 	print_cont(big);
+    if (big.size() != 1)
+		_big = merge_insrtion(big);
 	if (big.size() == 1)
 	{
-		if (big[0] < small[0])
+		if (big[0].first < small[0].first)
 			big.push_back(small[0]);
 		else
 			big.insert(big.begin(), small[0]);
+		small.clear();
 	}
-	if (odd != -1)
-		bynary_search(odd, _big, (_big.size() - 1), 0);
-	/*if (!small.empty())
+	if (!small.empty())
 	{
 		for (size_t i = 0; i < _big.size(); i++)
-		{
-			for (size_t j = 0; j < big.size(); j++)
-			{
-				if (big[j] == _big[i])
-				{
-					ord_small.push_back(small[j]);
-					break;
-				}
-			}
-		}
+			ord_small.push_back(std::make_pair(small[_big[i].second].first, i));
+		_big = insert(big, ord_small);
 	}
-	print_contein(big, ord_small);
-	_big = insert(big, ord_small);//_big es el big ordenado*/
     return (_big);
 }
 
 void	pmerge_me_vector(char **argv, clock_t &time_v)
 {
-	std::vector<int>	vect;
-	//std::vector<std::vector<int>>	all_small;
+	std::vector<std::pair<int, int> >	vect;
 
 	time_v = clock();
 	fill_vector(vect, argv);
-	vect = merge_insrtion(vect/*, all_small*/);
+	vect = merge_insrtion(vect);
 	time_v = clock() - time_v;
-	//print_after(vect);
+	print_after(vect);
 }
