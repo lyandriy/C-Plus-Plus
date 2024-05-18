@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/15 21:14:34 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:44:37 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,49 +86,26 @@ size_t	jacobsthal(size_t a)
 	return (0);
 }
 
-void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > &big, size_t begin, size_t end, std::vector<std::pair<int, int> > &big_dup, std::pair<int, int> &small_dup, std::vector<std::pair<int, int> > &small_)
+void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > &big, size_t begin, size_t end)
 {
-	size_t new_begin = begin + ((end - begin) / 2);
 	std::vector<std::pair<int, int> >::iterator it = big.begin();
-	std::vector<std::pair<int, int> >::iterator it_ = big_dup.begin();
-	size_t end_no = end;
 
-
-	if (big.size() <= end)
-	{
-		//std::cout << "dmkghahadakjjghhdfkjgnndkjdkj\n";
-		end -= 1;
-	}
+	size_t new_begin = begin + ((end - begin) / 2);
 	if (small.first <= big[0].first)
 	{
+		//std::cout << small.first << " antes de " << big[0].first << "\n";
 		big.insert(it, small);
-		big_dup.insert(it_, small_dup);
-		for (size_t i = 0; i < small_.size(); i++)
-			small_[i].second += 1;
+
 	}
 	else if (small.first >= big[end].first)
 	{
-		//print_cont(big);
 		
-		//std::cout << "end: " << end << " numb end: " << big[end].first << " small: " << small.first << std::endl;
-		if (big.size() <= end_no)
-		{
-			//std::cout << small.first << " + despues de " << big[end].first << std::endl;
-			//print_cont(big);
-			big.insert(big.begin() + (end + 1), small);
-			big_dup.insert(big_dup.begin() + (end + 1), small_dup);
-		}
-		else{
-			//std::cout << small.first << " despues de " << big[end].first << std::endl;
-			//print_cont(big);
-		big.insert(big.begin() + end + 1, small);
-		big_dup.insert(big_dup.begin() + end + 1, small_dup);}
-		//print_cont(big);
-		for (size_t i = end + 1; i < small_.size(); i++)
-			small_[i].second += 1;
+		//std::cout << small.first << " despues de " << big[end].first << "\n";
+			big.insert(big.begin() + end + 1, small);
 	}
 	else
 	{
+		
 		while (1)
 		{
 			if (big[new_begin].first > small.first)
@@ -137,44 +114,63 @@ void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > 
 				begin = new_begin + 1;
 			if (big[new_begin].first <= small.first && big[new_begin + 1].first >= small.first)
 			{
+				
+				//std::cout << small.first << " entre " << big[new_begin].first << " y " << big[new_begin + 1].first << "\n";
 				big.insert(it + (new_begin + 1), small);
-				big_dup.insert(it_ + (new_begin + 1), small_dup);
 				break;
 			}
 			new_begin = begin + ((end - begin) / 2);
 		}
-		for (size_t i = new_begin + 1; i < small_.size(); i++)
-			small_[i].second += 1;
 	}
 }
 
-std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > &big, std::vector<std::pair<int, int> > &small, std::vector<std::pair<int, int> > &big_dup, std::vector<std::pair<int, int> > &small_dup)
+std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > &big, std::vector<std::pair<int, int> > &small)
 {
+	int j = 0;
+	int k = 0;
 	size_t	a = 1;
-	std::vector<std::pair<int, int> > small_;
-	for (size_t i = 0; i < small.size(); i++)
-	{
-		small_.push_back(std::make_pair(i, i));
-	}
-	/*std::cout << "big conteiner				";
-	print_cont(big);
-	std::cout << "small conteiner				";
-	print_cont(small);*/
+	std::vector<std::pair<int, int> > big_d;
+	big_d = big;
 
+	//print_cont(big);
+	//print_cont(small);
 	big.insert(big.begin(), small.front());
-	big_dup.insert(big_dup.begin(), small_dup.front());
-	for (size_t i = 0; i < small_.size(); i++)
+	for (size_t i = 1; i < (small.size()); i++)
 	{
-		small_[i].second += 1;
-	}
-	for (size_t i = 1; i < (small.size()/* - 1*/); i++)
-	{
+		j = 0;
+		k = 0;
 		a = (jacobsthal(a));
-		if (a > (small.size() - 1))
+		//std::cout << i << " <- i " << a << " <-a " <<  small.size() << " <- size\n";
+		if (a > (small.size()))
+		{
+			//std::cout << a << " <- a \n";
 			a = (small.size());
-		//std::cout << "a " << a - 1 << std::endl;
-		bynary_search(small[a - 1], big, 0, (small_[a - 1].second), big_dup, small_dup[a - 1], small_);
+			//std::cout << a << " despues \n";
+		}
+		if (a > big_d.size())
+		{
+			k = big_d.size();
+			while (big[j].first != big_d[k - 1].first)
+			{
+			j++;
+			if (j == static_cast<int>(big.size()))
+				break;
+			}
+		}
+		else{
+		while (big[j].first != big_d[a - 1].first)
+		{
+			j++;
+			if (j == static_cast<int>(big.size()))
+				break;
+		}}//std::cout << j << "<- j\n";
+		//print_cont(big);
+		//std::cout << "hola \n";
+		bynary_search(small[a - 1], big, 0, j);
 	}
+	//std::cout << "final\n";
+	//print_cont(big);
+	//std::cout << "final___\n";
 	return (big);
 }
 
@@ -259,7 +255,8 @@ std::vector<std::pair<int, int> > merge_insrtion(std::vector<std::pair<int, int>
 			small.push_back(std::make_pair(odd.first, small.size()));
 			sorted_small.push_back(odd);
 		}
-		sorted_big = insert(sorted_big, sorted_small, big_dup, small_dup);//ordenado o duplicado
+		sorted_big = insert(sorted_big, sorted_small);//ordenado o duplicado
+		//std::cout << "hola3 \n";
 		return (sorted_big);
 	}
     return (big_dup);
@@ -271,8 +268,13 @@ void	pmerge_me_vector(char **argv, clock_t &time_v)
 
 	time_v = clock();
 	fill_vector(vect, argv);
+	if (vect.size() > 1)
+		vect = merge_insrtion(vect);
+
 	//print_cont(vect);
-	vect = merge_insrtion(vect);
+	//std::cout << "hola \n";
+	
+	//print_cont(vect);
 	time_v = clock() - time_v;
 	print_after(vect);
 }

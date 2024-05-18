@@ -5,58 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 18:06:10 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/10 20:14:41 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/05/16 18:33:21 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/05/16 21:49:09 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void	print_contein(std::vector<int> &myvector, std::vector<int> &myvector_s)
+void	print_contein(std::vector<std::pair<int, int> > &myvector, std::vector<std::pair<int, int> > &myvector_s)
 {
 	std::cout << "myvector contains big:";
-	for (std::vector<int>::iterator it = myvector.begin() ; it != myvector.end(); ++it)
-		std::cout << ' ' << *it;
+	for (std::vector<std::pair<int, int> >::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+		std::cout << ' ' << it->first;
+		//std::cout << ' ' << it->second;
 	std::cout << '\n';
 
 	std::cout << "myvector contains small:";
-	for (std::vector<int>::iterator it = myvector_s.begin() ; it != myvector_s.end(); ++it)
-		std::cout << ' ' << *it;
+	for (std::vector<std::pair<int, int> >::iterator it = myvector_s.begin() ; it != myvector_s.end(); ++it)
+		std::cout << ' ' << it->first;
+		//std::cout << ' ' << it->second;
 	std::cout << '\n';
 
 }
 
-void	marge_odd(std::vector<int> &big, std::vector<int> &small, int &odd)
+void	print_cont(std::vector<std::pair<int, int> > &myvector)
 {
-	int	a;
-
-	if (big[0] > big[1])
-	{
-		a = big[1];
-		big[1] = big[0];
-		big[0] = a;
-		a = small[1];
-		small[1] = small[0];
-		small[0] = a;
-	}
-	if (odd != -1)
-	{
-		//std::cout << "hola\n";
-		if (big[2] < big[0] || big[2] == big[0])
-		{
-			big.insert(big.begin(), big[2]);
-			small.insert(small.begin(), small[2]);
-			big.pop_back();
-			small.pop_back();
-		}
-		else if (big[2] < big[1] && big[2] > big[0])
-		{
-			big.insert(big.begin() + 1, big[2]);
-			small.insert(small.begin() + 1, small[2]);
-			big.pop_back();
-			small.pop_back();
-		}
-	}
+	std::cout << "myvector:";
+	for (std::vector<std::pair<int, int> >::iterator it = myvector.begin() ; it != myvector.end(); ++it)
+		std::cout << " " << it->first << "/" << it->second;
+	std::cout << '\n';
 }
 
 void	check_argv(char *argv)
@@ -68,9 +45,10 @@ void	check_argv(char *argv)
 	}
 }
 
-void	fill_vector(std::vector<int> &vect, char **argv)
+void	fill_vector(std::vector<std::pair<int, int> > &vect, char **argv)
 {
-	long int	vect_long;
+	long int			vect_long;
+	std::pair<int, int>	pair;
 
 	for (int i = 1; argv[i]; i++)
 	{
@@ -78,15 +56,17 @@ void	fill_vector(std::vector<int> &vect, char **argv)
 		vect_long = ::atol(argv[i]);
 		if (vect_long > INT_MAX)
 			throw error();
-		vect.push_back(vect_long);
+		pair.first = static_cast<int>(vect_long);
+		pair.second = i - 1;
+		vect.push_back(pair);
 	}
 }
 
-void	print_after(std::vector<int> &vect)
+void	print_after(std::vector<std::pair<int, int> > &vect)
 {
 	std::cout << "After:";
-	for (std::vector<int>::iterator i = vect.begin(); i < vect.end(); ++i)
-		std::cout << " " << *i;
+	for (std::vector<std::pair<int, int> >::iterator i = vect.begin(); i < vect.end(); ++i)
+		std::cout << " " << i->first;
 	std::cout << std::endl;
 }
 size_t	jacobsthal(size_t a)
@@ -106,95 +86,208 @@ size_t	jacobsthal(size_t a)
 	return (0);
 }
 
-void	bynary_search(int small, std::vector<int> &big, size_t end, size_t begin)
+void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > &big, size_t begin, size_t end, std::vector<std::pair<int, int> > &big_dup, std::pair<int, int> &small_dup, std::vector<std::pair<int, int> > &small_, std::vector<std::pair<int, int> > &small_i)
 {
-	size_t new_begin = begin + (end - begin) / 2;
-	std::vector<int>::iterator it = big.begin();
+	std::vector<std::pair<int, int> >::iterator it = big.begin();
+	std::vector<std::pair<int, int> >::iterator it_ = big_dup.begin();
+	size_t end_no = end;
 
-	if ((begin + 1) == end || small == big[new_begin])
-		big.insert(it + (begin + 1), small);
-	else if (big[new_begin] < small)
-		bynary_search(small, big, end, new_begin);
+	if (big_dup.size() <= end)
+		end -= 1;
+	size_t new_begin = begin + ((end - begin) / 2);
+	if (small.first <= big[0].first)
+	{
+		std::cout << small.first << " antes de " << big[end].first << std::endl;
+		std::cout << "big " ;
+		print_cont(big);
+		print_cont(small_i);
+		big.insert(it, small);
+		big_dup.insert(it_, small_dup);
+		std::cout << "en antes sumo a partir de " << small_[0].first << " posicion " << 0 << std::endl;
+		for (size_t i = 0; i < small_.size(); i++)
+		{
+			small_[i].second += 1;
+		}
+	}
+	else if (small.first >= big[end].first)
+	{
+		if (big_dup.size() <= end_no)
+		{
+			std::cout << small.first<< small_i[end].first << " + despues de " << big[end].first << std::endl;
+			big.insert(big.begin() + (end + 1), small);
+			big_dup.insert(big_dup.begin() + (end + 1), small_dup);
+		}
+		else
+		{
+			std::cout << small.first << " despues de " << big[end].first << " posicion " << end + 1 << std::endl;
+			std::cout << "big " ;
+			print_cont(big);
+			print_cont(small_i);
+			big.insert(big.begin() + end + 1, small);
+			big_dup.insert(big_dup.begin() + end + 1, small_dup);
+		}
+		std::cout << "en despues sumo a partir de " << small_[end + 1].first << std::endl;
+		for (size_t i = end + 1; i < small_.size(); i++)
+		{
+			small_[i].second += 1;
+		}
+	}
 	else
-		bynary_search(small, big, new_begin, 0);
+	{
+		while (1)
+		{
+			if (big[new_begin].first > small.first)
+				end = new_begin;
+			if (big[new_begin].first < small.first)
+				begin = new_begin + 1;
+			if (big[new_begin].first <= small.first && big[new_begin + 1].first >= small.first)
+			{
+				std::cout << small.first << " entre " << big[new_begin].first << " y " << big[new_begin + 1].first << " posicion " << new_begin + 1 << std::endl;
+				std::cout << "big " ;
+				print_cont(big);
+				print_cont(small_i);
+				big.insert(it + (new_begin + 1), small);
+				big_dup.insert(it_ + (new_begin + 1), small_dup);
+				std::cout << new_begin + 1 << " en entre sumo a partir de " << small_[new_begin + 1].first << std::endl;
+				for (size_t i = new_begin + 1; i < small_.size(); i++)
+				{
+					//std::cout << "hola" << i << std::endl;
+					small_[i].second += 1;
+				}
+				break;
+			}
+			new_begin = begin + ((end - begin) / 2);
+		}
+	}
+	std::cout << std::endl;
 }
 
-void	insert(std::vector<int> &big, std::vector<int> &small)
+std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > &big, std::vector<std::pair<int, int> > &small, std::vector<std::pair<int, int> > &big_dup, std::vector<std::pair<int, int> > &small_dup)
 {
 	size_t	a = 1;
-
-	//print_contein(big, small);
+	std::vector<std::pair<int, int> > small_;
+	for (size_t i = 0; i < small.size(); i++)
+	{
+		small_.push_back(std::make_pair(i, i));
+	}
+	//std::cout << "big conteiner				";
+	//print_cont(big);
+	//std::cout << "small conteiner				";
+	//print_cont(small);
+	std::cout << "soy nuevo\n";
 	big.insert(big.begin(), small.front());
-	for (size_t i = 1; i != (small.size() - 1); i++)
+	big_dup.insert(big_dup.begin(), small_dup.front());
+	for (size_t i = 0; i < small_.size(); i++)
+	{
+		small_[i].second += 1;
+	}
+	for (size_t i = 1; i < (small.size()/* - 1*/); i++)
 	{
 		a = (jacobsthal(a));
 		if (a > (small.size() - 1))
 			a = (small.size());
-		//std::cout << small.size() << " jacobsthal " << a << std::endl;
-		bynary_search(small[a - 1], big, a - 1, 0);
+		
+		//std::cout << "a " << a - 1 << " donde estoy " << small_[a - 1].second << std::endl;
+		bynary_search(small[a - 1], big, 0, (small_[a - 1].second), big_dup, small_dup[a - 1], small_, small);
 	}
+	return (big);
 }
 
-
-void	marge(std::vector<int> &big, std::vector<int> &small)
+std::vector<std::pair<int, int> > merge_insrtion(std::vector<std::pair<int, int> > sorted_big)
 {
-	std::vector<int> _big;
-	std::vector<int> _small;
-	int	odd = -1;
-
-	if (small.empty())
+    std::vector<std::pair<int, int> > big;
+    std::vector<std::pair<int, int> > small;
+	std::vector<std::pair<int, int> > big_dup;
+	std::vector<std::pair<int, int> > small_dup;
+	std::vector<std::pair<int, int> > sorted_small;
+    std::pair<int, int> odd =  std::make_pair(-1, -1);
+	int j = 0;
+    if (sorted_big.size() % 2 == 1)//quitar el numero impar
 	{
-		_small = small;
+		odd = sorted_big.back();   
+		sorted_big.pop_back();
 	}
-	if (big.size() % 2 == 1)
+    for (size_t i = 0; i < sorted_big.size(); i++)//crear los 4 contenedores
 	{
-		odd = big.back();
-		big.pop_back();
-	}
-	for (size_t i = 0; i < big.size(); i++)
-	{
-		std::cout << big[i] << std::endl;
-		if (big[i] > big[i + 1])
+		if (sorted_big[i] > sorted_big[i + 1])
 		{
-			_big.push_back(static_cast<int>(big[i]));
-			_small.push_back(static_cast<int>(big[i + 1]));
+			big_dup.push_back(sorted_big[i]);
+			small_dup.push_back(sorted_big[i + 1]);
+			big.push_back(std::make_pair(sorted_big[i].first, j));
+			small.push_back(std::make_pair(sorted_big[i + 1].first, j));
 		}
 		else
 		{
-			_small.push_back(static_cast<int>(big[i]));
-			_big.push_back(static_cast<int>(big[i + 1]));
+			small_dup.push_back(sorted_big[i]);
+			big_dup.push_back(sorted_big[i + 1]);
+			small.push_back(std::make_pair(sorted_big[i].first, j));
+			big.push_back(std::make_pair(sorted_big[i + 1].first, j));
 		}
-		if (i != (big.size() - 1))
+		if (i != (sorted_big.size() - 1))
 			i++;
+		j++;
 	}
-	if (_big.size() > 3)
-		marge(_big, _small);
-	print_contein(_big, _small);
-	if (odd != -1)
+	if (odd.first != -1)//insertar el numero impar
 	{
-		marge_odd(_big, _small, odd);
+		small_dup.push_back(odd);
+		small.push_back(std::make_pair(odd.first, small.size()));
 	}
-	/*insert(_big, _small);
-	if (odd != -1)
-		bynary_search(odd, _big, (_big.size() - 1), 0);
-	big = _big;*/
-}
-
-void	merge_insert(std::vector<int> &vect)
-{
-	std::vector<int>	big;
-	std::vector<int>	small;
-
-	marge(vect, small);
+    if (big.size() != 1)//recursividad
+		sorted_big = merge_insrtion(big);
+	if (big_dup.size() == 1)//si contenedor contiene un numero
+	{
+		if (big_dup[0].first < small_dup[0].first)
+		{
+			big_dup.push_back(small_dup[0]);
+		}
+		else
+			big_dup.insert(big_dup.begin(), small_dup[0]);
+		if (odd.first != -1)
+		{
+			if (big_dup[1].first <= small_dup.back().first)
+				big_dup.push_back(small_dup.back());
+			else if (big_dup[0].first >= small_dup.back().first)
+				big_dup.insert(big_dup.begin(), small_dup.back());
+			else
+				big_dup.insert(big_dup.begin() + 1, small_dup.back());
+		}
+		small_dup.clear();
+		
+	}
+	int pos;
+	if (!small_dup.empty())//ordenar el contenedor peqeño
+	{
+		for (size_t i = 0; i < sorted_big.size(); i++)
+		{
+			pos = sorted_big[i].second;
+			sorted_small.push_back(small_dup[pos]);
+			sorted_big[i].second = big_dup[pos].second;
+		}
+		if (sorted_big.size() == 2)
+		{
+			big_dup = sorted_big;
+			small_dup = sorted_small;
+		}
+		if (odd.first != -1)//insertar el numero impar
+		{
+			small_dup.push_back(odd);
+			small.push_back(std::make_pair(odd.first, small.size()));
+			sorted_small.push_back(odd);
+		}
+		sorted_big = insert(sorted_big, sorted_small, big_dup, small_dup);//ordenado o duplicado
+		return (sorted_big);
+	}
+    return (big_dup);
 }
 
 void	pmerge_me_vector(char **argv, clock_t &time_v)
 {
-	std::vector<int>	vect;
+	std::vector<std::pair<int, int> >	vect;
 
 	time_v = clock();
 	fill_vector(vect, argv);
-	merge_insert(vect);
+	//print_cont(vect);
+	vect = merge_insrtion(vect);
 	time_v = clock() - time_v;
-	//print_after(vect);
+	print_after(vect);
 }

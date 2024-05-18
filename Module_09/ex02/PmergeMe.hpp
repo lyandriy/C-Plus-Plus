@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:35:45 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/06 19:21:12 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:33:36 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 #include <utility>
 #include <cstdlib>
 #include <climits>
-//#include <stdlib.h>
+#include <algorithm>
+
 
 #define SEC_TO_MICRO 1000000.0
 

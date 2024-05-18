@@ -6,7 +6,7 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/14 19:24:25 by lyandriy          #+#    #+#              #
-#    Updated: 2024/05/12 16:14:34 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/05/17 21:20:30 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJ = $(SRC:.cpp=.o)
 NAME = PmergeMe
 
 CXX = g++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -g
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98 -g #-fsanitize=address
 all: $(NAME)
 
 $(NAME) : $(OBJ)
