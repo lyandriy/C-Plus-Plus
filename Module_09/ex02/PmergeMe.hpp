@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:35:45 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/16 18:33:36 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:23:38 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,10 @@
 #include <cstdlib>
 #include <climits>
 #include <algorithm>
-
-
-#define SEC_TO_MICRO 1000000.0
+#include <deque>
 
 void	pmerge_me_vector(char **argv, clock_t &time_v);
-//void	pmerge_me_list(int argc, char **argv, clock_t &time_l);
-
-class	my_pair
-{
-	public:
-		int	size;
-		std::pair<int, int> *pair;
-};
+void	pmerge_me_deque(char **argv, clock_t &time_d);
 
 class	error : public std::exception
 {

@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:42:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/20 15:26:56 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:29:58 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <queue>
 #include <limits>
 #include <cfloat>
+#include <climits>
+#include <cstdlib>
 
 int	rpn(char **argv);
 

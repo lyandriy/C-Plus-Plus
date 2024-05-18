@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:24:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/18 18:49:44 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:26:43 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	map_input(std::map<long int,float> data, std::string file)
 	std::string		date_str;
 	long int		date_int;
 	double			num;
-	std::ifstream	in_file(file);
+	std::ifstream	in_file(file.c_str());
 	std::map<long int,float>::iterator	it;
 
 	if (in_file.is_open())

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMeVector.cpp                                 :+:      :+:    :+:   */
+/*   PmergeMeDeque.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/18 20:27:36 by lyandriy         ###   ########.fr       */
+/*   Created: 2024/04/21 13:37:30 by lyandriy          #+#    #+#             */
+/*   Updated: 2024/05/18 20:27:07 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void	check_argv(char *argv)
+static void	check_argv(char *argv)
 {
 	for (int i = 0; argv[i]; i++)
 	{
@@ -21,31 +21,31 @@ void	check_argv(char *argv)
 	}
 }
 
-void	fill_vector(std::vector<std::pair<int, int> > &vect, char **argv)
+static void	fill_vector(std::deque<std::pair<int, int> > &deque, char **argv)
 {
-	long int			vect_long;
+	long int			deque_long;
 	std::pair<int, int>	pair;
 
 	for (int i = 1; argv[i]; i++)
 	{
 		check_argv(argv[i]);
-		vect_long = ::atol(argv[i]);
-		if (vect_long > INT_MAX)
+		deque_long = ::atol(argv[i]);
+		if (deque_long > INT_MAX)
 			throw error();
-		pair.first = static_cast<int>(vect_long);
+		pair.first = static_cast<int>(deque_long);
 		pair.second = i - 1;
-		vect.push_back(pair);
+		deque.push_back(pair);
 	}
 }
 
-void	print_after(std::vector<std::pair<int, int> > &vect)
+static void	print_after(std::deque<std::pair<int, int> > &deque)
 {
 	std::cout << "After:";
-	for (std::vector<std::pair<int, int> >::iterator i = vect.begin(); i < vect.end(); ++i)
+	for (std::deque<std::pair<int, int> >::iterator i = deque.begin(); i < deque.end(); ++i)
 		std::cout << " " << i->first;
 	std::cout << std::endl;
 }
-static size_t	jacobsthal(size_t a)
+size_t	jacobsthal(size_t a)
 {
 	size_t susecion[36] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365,
 	2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, 699051, 1398101,
@@ -62,7 +62,7 @@ static size_t	jacobsthal(size_t a)
 	return (0);
 }
 
-void	make_pos(std::vector<size_t> &pos, size_t end)
+static void	make_pos(std::deque<size_t> &pos, size_t end)
 {
 	for (size_t i = 0; i < pos.size(); i++)
 	{
@@ -71,11 +71,11 @@ void	make_pos(std::vector<size_t> &pos, size_t end)
 	}
 }
 
-void	bynary_insert(std::pair<int, int> small, std::vector<std::pair<int, int> > &big, size_t end, std::vector<size_t> &pos)
+static void	bynary_insert(std::pair<int, int> small, std::deque<std::pair<int, int> > &big, size_t end, std::deque<size_t> &pos)
 {
 	size_t begin = 0;
 	size_t new_begin = begin + ((end - begin) / 2);
-	std::vector<std::pair<int, int> >::iterator it = big.begin();
+	std::deque<std::pair<int, int> >::iterator it = big.begin();
 
 	while (1)
 	{
@@ -95,7 +95,7 @@ void	bynary_insert(std::pair<int, int> small, std::vector<std::pair<int, int> > 
 	}
 }
 
-void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > &big, size_t end, std::vector<size_t> &pos)
+static void	bynary_search(std::pair<int, int> small, std::deque<std::pair<int, int> > &big, size_t end, std::deque<size_t> &pos)
 {
 	if (small.first <= big[0].first)
 	{
@@ -112,12 +112,12 @@ void	bynary_search(std::pair<int, int> small, std::vector<std::pair<int, int> > 
 		bynary_insert(small, big, end, pos);
 }
 
-std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > &big, std::vector<std::pair<int, int> > &small)
+static std::deque<std::pair<int, int> >	insert(std::deque<std::pair<int, int> > &big, std::deque<std::pair<int, int> > &small)
 {
 	size_t	a = 1;
 	size_t	r = 0;
-	std::vector<std::pair<int, int> > big_d;
-	std::vector<size_t> pos;
+	std::deque<std::pair<int, int> > big_d;
+	std::deque<size_t> pos;
 
 	big_d = big;
 	for (size_t i = 0; i < big_d.size(); i++)
@@ -138,8 +138,8 @@ std::vector<std::pair<int, int> >	insert(std::vector<std::pair<int, int> > &big,
 	return (big);
 }
 
-void	make_containers(std::vector<std::pair<int, int> > &sorted_big, std::vector<std::pair<int, int> > &small, std::vector<std::pair<int, int> > &big,
-						std::vector<std::pair<int, int> > &big_dup, std::vector<std::pair<int, int> > &small_dup)
+static void	make_containers(std::deque<std::pair<int, int> > &sorted_big, std::deque<std::pair<int, int> > &small, std::deque<std::pair<int, int> > &big,
+						std::deque<std::pair<int, int> > &big_dup, std::deque<std::pair<int, int> > &small_dup)
 {
 	int j = 0;
 
@@ -165,7 +165,7 @@ void	make_containers(std::vector<std::pair<int, int> > &sorted_big, std::vector<
 	}
 }
 
-void	sort_begin(std::vector<std::pair<int, int> > &big_dup, std::vector<std::pair<int, int> > &small_dup, std::pair<int, int> &odd)
+static void	sort_begin(std::deque<std::pair<int, int> > &big_dup, std::deque<std::pair<int, int> > &small_dup, std::pair<int, int> &odd)
 {
 	if (big_dup.size() == 1)//si contenedor contiene un numero
 	{
@@ -192,8 +192,8 @@ void	sort_begin(std::vector<std::pair<int, int> > &big_dup, std::vector<std::pai
 	}
 }
 
-void	copy(std::vector<std::pair<int, int> > &sorted_big, std::vector<std::pair<int, int> > &sorted_small, std::vector<std::pair<int, int> > &small_dup,
-			std::vector<std::pair<int, int> > &big_dup, std::vector<std::pair<int, int> > &small, std::pair<int, int> &odd)
+static void	copy(std::deque<std::pair<int, int> > &sorted_big, std::deque<std::pair<int, int> > &sorted_small, std::deque<std::pair<int, int> > &small_dup,
+			std::deque<std::pair<int, int> > &big_dup, std::deque<std::pair<int, int> > &small, std::pair<int, int> &odd)
 {
 	int pos;
 	for (size_t i = 0; i < sorted_big.size(); i++)
@@ -215,13 +215,13 @@ void	copy(std::vector<std::pair<int, int> > &sorted_big, std::vector<std::pair<i
 	}
 }
 
-std::vector<std::pair<int, int> > merge_insertion(std::vector<std::pair<int, int> > sorted_big)
+static std::deque<std::pair<int, int> > merge_insertion(std::deque<std::pair<int, int> > sorted_big)
 {
-    std::vector<std::pair<int, int> > big;
-    std::vector<std::pair<int, int> > small;
-	std::vector<std::pair<int, int> > big_dup;
-	std::vector<std::pair<int, int> > small_dup;
-	std::vector<std::pair<int, int> > sorted_small;
+    std::deque<std::pair<int, int> > big;
+    std::deque<std::pair<int, int> > small;
+	std::deque<std::pair<int, int> > big_dup;
+	std::deque<std::pair<int, int> > small_dup;
+	std::deque<std::pair<int, int> > sorted_small;
     std::pair<int, int> odd =  std::make_pair(-1, -1);
 
     if (sorted_big.size() % 2 == 1)//quitar el numero impar
@@ -247,14 +247,14 @@ std::vector<std::pair<int, int> > merge_insertion(std::vector<std::pair<int, int
     return (big_dup);
 }
 
-void	pmerge_me_vector(char **argv, clock_t &time_v)
+void	pmerge_me_deque(char **argv, clock_t &time_d)
 {
-	std::vector<std::pair<int, int> >	vect;
+	std::deque<std::pair<int, int> >	deque;
 
-	time_v = clock();
-	fill_vector(vect, argv);
-	if (vect.size() > 1)
-		vect = merge_insertion(vect);
-	time_v = clock() - time_v;
-	print_after(vect);
+	time_d = clock();
+	fill_vector(deque, argv);
+	if (deque.size() > 1)
+		deque = merge_insertion(deque);
+	time_d = clock() - time_d;
+	print_after(deque);
 }

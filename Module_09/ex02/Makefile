@@ -6,13 +6,14 @@
 #    By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/14 19:24:25 by lyandriy          #+#    #+#              #
-#    Updated: 2024/05/17 21:20:30 by lyandriy         ###   ########.fr        #
+#    Updated: 2024/05/18 20:24:40 by lyandriy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 SRC = main.cpp \
 	  PmergeMeVector.cpp \
+	  PmergeMeDeque.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 

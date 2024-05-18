@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:35:21 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/11 17:02:12 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/18 20:34:24 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,32 @@ void	print_before(char **argv)
 	std::cout << std::endl;
 }
 
-void	print_time_l(clock_t &time_l, int argc)
+void	print_time(clock_t &time_d, int argc, std::string conten)
 {
-	std::cout << "Time to process a range of " << (argc - 1) << " elements with std::list : ";
-	std::cout << ((time_l / CLOCKS_PER_SEC) * SEC_TO_MICRO) << " us" << std::endl;
+	std::cout << "Time to process a range of " << (argc - 1) << " elements with std::" << conten << " : ";
+	std::cout << (((float)time_d / CLOCKS_PER_SEC)) << " us" << std::endl;
 }
 
-void	print_time_v(clock_t &time_v, int argc)
+/*void	print_time_v(clock_t &time_v, int argc)
 {
 	std::cout << "Time to process a range of " << (argc - 1) << " elements with std::vector : ";
-	std::cout << ((time_v / CLOCKS_PER_SEC) * SEC_TO_MICRO) << " us" << std::endl;
-}
+	std::cout << (((float)time_v / CLOCKS_PER_SEC)) << " us" << std::endl;
+}*/
 
 int	main(int argc, char **argv)
 {
 	clock_t	time_v;
-	//clock_t	time_l;
+	clock_t	time_d;
 
 	try
 	{
 		if (argc > 1)
 		{
-			//print_before(argv);
-			
+			print_before(argv);
 			pmerge_me_vector(argv, time_v);
-			//pmerge_me_list(argc, argv, time_l);
-			//print_time_v(time_v, argc);
-			//print_time_l(time_l, argc);
+			pmerge_me_deque(argv, time_d);
+			print_time(time_v, argc, "vector");
+			print_time(time_d, argc, "deque");
 		}
 		else
 			throw error();

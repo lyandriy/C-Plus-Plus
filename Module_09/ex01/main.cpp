@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:34 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/04/22 18:29:22 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:29:45 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ long int	make_digit(char *argv, int &i)
 	count = atol(s.substr((i - count), count).c_str());
 	if (flag)
 		count *= -1;
-	if (count < INT_MIN || count > INT_MAX)
+	if (count < INT_MIN || count > 10)
 		throw error();
 	return (count);
 }
@@ -65,7 +65,7 @@ double	numb_size(char *argv)
 	}
 	if (numb.size() == 1 && oper == 0)
 		return (numb.top());
-	if (/*numb.size() > 10 || */(numb.size() - 1) != oper)
+	if ((numb.size() - 1) != oper)
 		throw error();
 	std::cout << "= " << std::endl;
 	return (0);
