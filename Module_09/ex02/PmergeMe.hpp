@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:35:45 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/18 20:23:38 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:12:11 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <climits>
 #include <algorithm>
 #include <deque>
+#include <iomanip>
 
 void	pmerge_me_vector(char **argv, clock_t &time_v);
 void	pmerge_me_deque(char **argv, clock_t &time_d);

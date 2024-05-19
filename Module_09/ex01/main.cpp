@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:25:34 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/17 15:29:45 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:59:05 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ long int	make_digit(char *argv, int &i)
 	count = atol(s.substr((i - count), count).c_str());
 	if (flag)
 		count *= -1;
-	if (count < INT_MIN || count > 10)
+	if (count < -10 || count > 10)
 		throw error();
 	return (count);
 }
@@ -67,7 +67,6 @@ double	numb_size(char *argv)
 		return (numb.top());
 	if ((numb.size() - 1) != oper)
 		throw error();
-	std::cout << "= " << std::endl;
 	return (0);
 }
 
@@ -112,7 +111,6 @@ void	operations(char *argv, std::stack<long int> &numb, int &i)
 		numb.pop();
 		second_num = numb.top();
 		numb.pop();
-		std::cout << second_num << argv[i] << first_num;
 		if (argv[i] == '+')
 			numb.push(second_num + first_num);
 		else if (argv[i] == '-')
@@ -120,8 +118,12 @@ void	operations(char *argv, std::stack<long int> &numb, int &i)
 		else if (argv[i] == '*')
 			numb.push(second_num * first_num);
 		else if (argv[i] == '/')
-			numb.push(second_num / first_num);
-		std::cout << "= " << numb.top() << std::endl;
+		{
+			if (first_num == 0)
+				numb.push(0);
+			else
+				numb.push(second_num / first_num);
+		}
 		i++;
 		while (argv[i] == ' ')
 			i++;
@@ -169,7 +171,7 @@ int	main(int argc, char **argv)
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;;
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }

@@ -6,11 +6,21 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/18 20:27:36 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/19 16:40:17 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+void	print_before(char **argv)
+{
+	std::cout << "Before:";
+	for (int i = 1; argv[i]; i++)
+	{
+		std::cout << " " << argv[i];
+	}
+	std::cout << std::endl;
+}
 
 void	check_argv(char *argv)
 {
@@ -45,7 +55,7 @@ void	print_after(std::vector<std::pair<int, int> > &vect)
 		std::cout << " " << i->first;
 	std::cout << std::endl;
 }
-static size_t	jacobsthal(size_t a)
+size_t	jacobsthal(size_t a)
 {
 	size_t susecion[36] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365,
 	2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, 699051, 1398101,
@@ -59,6 +69,7 @@ static size_t	jacobsthal(size_t a)
 		else if (a <= susecion[i + 1] && a > susecion[i])
 			return (--a);
 	}
+	throw error();
 	return (0);
 }
 
@@ -143,7 +154,7 @@ void	make_containers(std::vector<std::pair<int, int> > &sorted_big, std::vector<
 {
 	int j = 0;
 
-	 for (size_t i = 0; i < sorted_big.size(); i++)//crear los 4 contenedores
+	for (size_t i = 0; i < sorted_big.size(); i++)
 	{
 		if (sorted_big[i] > sorted_big[i + 1])
 		{
@@ -167,12 +178,10 @@ void	make_containers(std::vector<std::pair<int, int> > &sorted_big, std::vector<
 
 void	sort_begin(std::vector<std::pair<int, int> > &big_dup, std::vector<std::pair<int, int> > &small_dup, std::pair<int, int> &odd)
 {
-	if (big_dup.size() == 1)//si contenedor contiene un numero
+	if (big_dup.size() == 1)
 	{
 		if (big_dup[0].first < small_dup[0].first)
-		{
 			big_dup.push_back(small_dup[0]);
-		}
 		else
 			big_dup.insert(big_dup.begin(), small_dup[0]);
 		if (odd.first != -1)
@@ -180,13 +189,9 @@ void	sort_begin(std::vector<std::pair<int, int> > &big_dup, std::vector<std::pai
 			if (big_dup[1].first <= small_dup.back().first)
 				big_dup.push_back(small_dup.back());
 			else if (big_dup[0].first >= small_dup.back().first)
-			{
 				big_dup.insert(big_dup.begin(), small_dup.back());
-			}
 			else
-			{
 				big_dup.insert(big_dup.begin() + 1, small_dup.back());
-			}
 		}
 		small_dup.clear();
 	}
@@ -207,7 +212,7 @@ void	copy(std::vector<std::pair<int, int> > &sorted_big, std::vector<std::pair<i
 		big_dup = sorted_big;
 		small_dup = sorted_small;
 	}
-	if (odd.first != -1)//insertar el numero impar
+	if (odd.first != -1)
 	{
 		small_dup.push_back(odd);
 		small.push_back(std::make_pair(odd.first, small.size()));
@@ -224,24 +229,24 @@ std::vector<std::pair<int, int> > merge_insertion(std::vector<std::pair<int, int
 	std::vector<std::pair<int, int> > sorted_small;
     std::pair<int, int> odd =  std::make_pair(-1, -1);
 
-    if (sorted_big.size() % 2 == 1)//quitar el numero impar
+    if (sorted_big.size() % 2 == 1)
 	{
 		odd = sorted_big.back();   
 		sorted_big.pop_back();
 	}
 	make_containers(sorted_big, small, big, big_dup, small_dup);
-	if (odd.first != -1)//insertar el numero impar
+	if (odd.first != -1)
 	{
 		small_dup.push_back(odd);
 		small.push_back(std::make_pair(odd.first, small.size()));
 	}
-    if (big.size() != 1)//recursividad
+    if (big.size() != 1)
 		sorted_big = merge_insertion(big);
 	sort_begin(big_dup, small_dup, odd);
-	if (!small_dup.empty())//ordenar el contenedor peqeño
+	if (!small_dup.empty())
 	{
 		copy(sorted_big, sorted_small, small_dup, big_dup, small, odd);
-		sorted_big = insert(sorted_big, sorted_small);//ordenado o duplicado
+		sorted_big = insert(sorted_big, sorted_small);
 		return (sorted_big);
 	}
     return (big_dup);
@@ -256,5 +261,6 @@ void	pmerge_me_vector(char **argv, clock_t &time_v)
 	if (vect.size() > 1)
 		vect = merge_insertion(vect);
 	time_v = clock() - time_v;
+	print_before(argv);
 	print_after(vect);
 }
