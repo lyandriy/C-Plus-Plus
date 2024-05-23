@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:24:53 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/19 16:20:52 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:06:58 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ void	mns(float num, std::string line, std::map<int,float>::iterator it, std::map
 	else if (num < 0)
 		std::cout << "Error: not a positive number." << std::endl;
 	else if (!is_val(line.substr(13)))
-		std::cout << "Error: bad input1 => " << line << std::endl;
+		std::cout << "Error: bad input => " << line << std::endl;
 	else if (it != data.end())
 		std::cout << line.substr(0, 10) << " => " << num << " = " << std::fixed << std::setprecision(2) << (it->second * num) << std::endl;
 	else
-		std::cout << "Error: bad input2 => " << line << std::endl;
+		std::cout << "Error: bad input => " << line << std::endl;
 }
 
 void	map_input(std::map<int,float> data, std::string file)
@@ -129,7 +129,7 @@ void	map_input(std::map<int,float> data, std::string file)
 				mns(num, line, it, data);
 			}
 			else
-				std::cout << "Error: bad input3 => " << line << std::endl;
+				std::cout << "Error: bad input => " << line << std::endl;
 		}
 	}
 	else

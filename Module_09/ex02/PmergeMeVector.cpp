@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/19 16:40:17 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:07:45 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void	sort_begin(std::vector<std::pair<int, int> > &big_dup, std::vector<std::pai
 			big_dup.push_back(small_dup[0]);
 		else
 			big_dup.insert(big_dup.begin(), small_dup[0]);
-		if (odd.first != -1)
+		if (odd.second != -1)
 		{
 			if (big_dup[1].first <= small_dup.back().first)
 				big_dup.push_back(small_dup.back());
@@ -212,7 +212,7 @@ void	copy(std::vector<std::pair<int, int> > &sorted_big, std::vector<std::pair<i
 		big_dup = sorted_big;
 		small_dup = sorted_small;
 	}
-	if (odd.first != -1)
+	if (odd.second != -1)
 	{
 		small_dup.push_back(odd);
 		small.push_back(std::make_pair(odd.first, small.size()));
