@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:50:56 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/23 16:07:45 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:11:10 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ std::vector<std::pair<int, int> > merge_insertion(std::vector<std::pair<int, int
 		sorted_big.pop_back();
 	}
 	make_containers(sorted_big, small, big, big_dup, small_dup);
-	if (odd.first != -1)
+	if (odd.second != -1)
 	{
 		small_dup.push_back(odd);
 		small.push_back(std::make_pair(odd.first, small.size()));

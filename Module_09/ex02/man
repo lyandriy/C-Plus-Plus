@@ -1,0 +1,123 @@
+2 14 17 7 21 3 19 9 11 15 10 18 12 5 20 16 4 13 8 1 6
+
+funcion_recursiva_primera_llamada
+nº mayores -> 14 17 21 19 15 18 12 20 13 8
+nº menores -> 2  7  3  9  11 10 5  16 4  1 6
+
+funcion_recursiva_segunda_llamada
+nº mayores -> 17 21 18 20 13
+nº menores -> 14 19 15 12 8
+
+funcion_recursiva_tersera_llamada
+nº mayores -> 21 20
+nº menores -> 17 18 13
+
+SORT
+
+funcion_recursiva_tersera_llamada
+nº mayores -> 20₁ 21₂
+nº menores -> 18₁ 17₂ 13₃
+
+Primer paso, insertar el primer numero
+
+nº mayores -> 20 21    => insertamos el 18 => 18 20 21
+nº menores -> 18 17 13                           18 17 13
+
+Segunso paso, el orden de elegir el numero pequeño es segun el numeros de jacobsthal (0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, … ) 
+y seria asi: 1, 3, 2, 5, 4, 11, 10, 9, 8, 7, 6, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, ...
+Para insertar el numero pequeño se usa insercion binaria.
+
+nº mayores -> 18 20 21     => el 13(posicion 3) buscamos su lugar entre 18 y 21 con busqueda binaria => 13 18 20 21
+nº menores ->    18 17 13                                                                                     18 17 13
+
+nº mayores -> 13 18 20 21     => el 17(posicion 2) buscamos su lugar entre 13 y 20 con busqueda binaria => 13 17 18 20 21
+nº menores ->       18 17 13                                                                                        18 17 13
+
+funcion_recursiva_segunda_llamada
+nº mayores -> 13  17  18  20  21
+nº menores -> 8₁  14₂ 15₃ 12₄ 19₅
+
+nº mayores -> 13 17 18 20 21    => insertamos el 8   =>    8 13 17 18 20 21
+nº menores -> 8  14 15 12 19                                 8  14 15 12 19
+
+nº mayores -> 8 13 17 18 20 21     => el 15(posicion 3) buscamos su lugar entre 8 y 17 con busqueda binaria => 8 13 15 17 18 20 21
+nº menores ->   8  14 15 12 19                                                                                   8     14 15 12 19
+
+nº mayores -> 8 13 15 17 18 20 21     => el 14(posicion 2) buscamos su lugar entre 8 y 15 con busqueda binaria => 8 13 14 15 17 18 20 21
+nº menores ->   8     14 15 12 19                                                                                   8        14 15 12 19
+
+nº mayores -> 8 13 14 15 17 18 19 20 21     => el 19(posicion 5) buscamos su lugar entre 8 y 20 con busqueda binaria 
+nº menores ->   8        14 15    12 19
+
+nº mayores -> 8 13 14 15 17 18 19 20 21     => el 12(posicion 4) buscamos su lugar entre 8 y 19 con busqueda binaria => 8 13 14 15 17 18 19 20 21
+nº menores ->   8        14 15    12 19                                                                                   8        14 15    12 19
+
+funcion_recursiva_primera_llamada
+nº mayores -> 8  12  13  14  15  17  18  19  20  21
+nº menores -> 1₁ 5₂  4₃  2₄  11₅ 7₆  10₇ 9₈  16₉ 3₁₀  6₁₁
+
+nº mayores -> 8 12 13 14 15 17 18 19 20 21    => insertamos el 1 => 1 8 12 13 14 15 17 18 19 20 21
+nº menores -> 1 5  4  2  11 7  10 9  16 3  6                          1 5  4  2  11 7  10 9  16 3  6
+
+nº mayores -> 1 4 8 12 13 14 15 17 18 19 20 21    => el 4(posicion 3) buscamos su lugar entre 1 y 12 con busqueda binaria => 1 4 8 12 13 14 15 17 18 19 20 21
+nº menores ->     1 5  4  2  11 7  10 9  16 3  6
+
+nº mayores -> 1 4 5 8 12 13 14 15 17 18 19 20 21    => el 5(posicion 2) buscamos su lugar entre 1 y 8 con busqueda binaria 
+nº menores ->       1 5  4  2  11 7  10 9  16 3  6
+    
+nº mayores -> 1 4 5 8 11 12 13 14 15 17 18 19 20 21    => el 11(posicion 5) buscamos su lugar entre 1 y 14 con busqueda binaria 
+nº menores ->       1    5  4  2  11 7  10 9  16 3  6
+
+nº mayores -> 1 2 4 5 8 11 12 13 14 15 17 18 19 20 21    => el 2(posicion 4) buscamos su lugar entre 1 y 13 con busqueda binaria 
+nº menores ->         1    5  4  2  11 7  10 9  16 3  6
+
+nº mayores -> 1 2 4 5 6 8 11 12 13 14 15 17 18 19 20 21    => el 6(posicion 11) buscamos su lugar entre 1 y 21 con busqueda binaria 
+nº menores ->         1      5  4  2  11 7  10 9  16 3  6
+
+nº mayores -> 1 2 3 4 5 6 8 11 12 13 14 15 17 18 19 20 21    => el 3(posicion 10) buscamos su lugar entre 1 y 20 con busqueda binaria 
+nº menores ->         1        5  4  2  11 7  10 9  16 3  6
+
+nº mayores -> 1 2 3 4 5 6 8 11 12 13 14 15 16 17 18 19 20 21    => el 16(posicion 9) buscamos su lugar entre 1 y 19 con busqueda binaria 
+nº menores ->         1        5  4  2  11    7  10 9  16 3  6
+
+nº mayores -> 1 2 3 4 5 6 8 9 11 12 13 14 15 16 17 18 19 20 21    => el 9(posicion 8) buscamos su lugar entre 1 y 18 con busqueda binaria 
+nº menores ->         1          5  4  2  11    7  10 9  16 3  6
+
+nº mayores -> 1 2 3 4 5 6 8 9 10 11 12 13 14 15 16 17 18 19 20 21    => el 10(posicion 7) buscamos su lugar entre 1 y 17 con busqueda binaria 
+nº menores ->         1             5  4  2  11    7  10 9  16 3  6
+
+nº mayores -> 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21    => el 7(posicion 6) buscamos su lugar entre 1 y 16 con busqueda binaria 
+nº menores ->         1               5  4  2  11    7  10 9  16 3  6
+
+
+
+
+#
+#            14/0 17/1 21/2 19/3 |15/4 18/5 12/6 20/7| 13/8 8/9
+#            2/0  7/1  3/2  9/3  |11/4 10/5 5/6  16/7| 4/8  1/9 6/10     
+#
+#                    17/0 21/1 |18/2 20/3| 13/4 -> 13/2/4 17/0/0 18/1/2 20/1/3 21/0/1 -> 13/4 17/0 18/2 20/3 21/1
+#                    14/0 19/1 |15/2 12/3| 8/4
+#                    17/0 21/1 |18/2 20/3| 13/4/big     -> 17/1 21/2 |18/5 20/7| 13/8 /big_dup   ->  13/8 17/1 18/5 20/7 21/2/sorted_big
+#                    14/0 19/1 |15/2 12/3| 8/4 /small   -> 14/0 19/3 |15/4 12/6| 8/9  /small_dup ->  8/9  14/0 15/4 12/6 19/3/sorted_small
+#
+#                       21 |20          17/0 21/1 |18/2 20/3| 13/4  
+#                       17 |18 13
+#                       21/0 |20/1          21/1 |20/3|       ->  17/0 21/1 |18/2 20/3| 13/4/recibido -> 13/4 17/0 18/2 20/3 21/1/sorted
+#                       17/0 |18/1 13/2     17/0 |18/2| 13/4 
+#
+#                       21
+#                       20          
+#                           21  ->20/1 21/0
+#                           20          
+
+
+#14 17 21 19 |15 18 12 20| 13 8
+#17 21 |18 20| 13
+#21 |20
+#21
+#17/0 21/1 |18/2 20/3| 13/4
+#
+#tener una copia en la llamada de la funcion de mas bajo nivel
+
+

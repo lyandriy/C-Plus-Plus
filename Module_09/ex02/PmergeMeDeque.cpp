@@ -6,7 +6,7 @@
 /*   By: lyandriy <lyandriy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:37:30 by lyandriy          #+#    #+#             */
-/*   Updated: 2024/05/19 16:37:41 by lyandriy         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:10:23 by lyandriy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ void	sort_begin_(std::deque<std::pair<int, int> > &big_dup, std::deque<std::pair
 			big_dup.push_back(small_dup[0]);
 		else
 			big_dup.insert(big_dup.begin(), small_dup[0]);
-		if (odd.first != -1)
+		if (odd.second != -1)
 		{
 			if (big_dup[1].first <= small_dup.back().first)
 				big_dup.push_back(small_dup.back());
@@ -202,7 +202,7 @@ void	copy_(std::deque<std::pair<int, int> > &sorted_big, std::deque<std::pair<in
 		big_dup = sorted_big;
 		small_dup = sorted_small;
 	}
-	if (odd.first != -1)
+	if (odd.second != -1)
 	{
 		small_dup.push_back(odd);
 		small.push_back(std::make_pair(odd.first, small.size()));
@@ -225,7 +225,7 @@ std::deque<std::pair<int, int> > merge_insertion_(std::deque<std::pair<int, int>
 		sorted_big.pop_back();
 	}
 	make_containers_(sorted_big, small, big, big_dup, small_dup);
-	if (odd.first != -1)
+	if (odd.second != -1)
 	{
 		small_dup.push_back(odd);
 		small.push_back(std::make_pair(odd.first, small.size()));
