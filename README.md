@@ -31,11 +31,3 @@ The C++ curriculum at School 42 is divided into several modules, each focusing o
 6. **File I/O and Serialization**
    - **Objective**: Implement file input/output operations and data serialization techniques to handle data storage and retrieval.
    - **Key Topics**: File streams (`ifstream`, `ofstream`), binary and text file operations, serialization.
-
-7. **Concurrency**
-   - **Objective**: Understand and apply multithreading and concurrency concepts in C++. Manage multiple threads and synchronize access to shared resources.
-   - **Key Topics**: Threads (`std::thread`), mutexes and locks, condition variables.
-
-8. **Networking (Optional)**
-   - **Objective**: Explore network programming concepts and implement basic networking protocols for communication between applications.
-   - **Key Topics**: Socket programming, TCP/IP, client-server communication.
